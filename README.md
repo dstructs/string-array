@@ -4,7 +4,13 @@ String Array
 
 > String array class.
 
+Why not just use native `Arrays`? A `StringArray`
 
+*	prevents non-string primitives from being added to the `array`
+*	provides options to constrain `string` length
+*	allows __fancy indexing__
+
+===
 1. [Install](#installation)
 1. [Usage](#usage)
 	-	[StringArray()](#string-array)
@@ -399,10 +405,11 @@ $ node ./examples/index.js
 ===
 ## Notes
 
-* A `StringArray` is __not__ an `Array` instance.
-* `Object.keys()` will __not__ work as expected. A `StringArray` instance is an `object` which manages an internal `array`.
-* When applied to a `StringArray`, [`Array.isArray()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray)  will return `false`.
-* While an effort has been made to retain fidelity to the ECMAScript standard for `Arrays`, no guarantee is made that method implementations are spec compliant. This is particularly the case where the spec stipulates additional checks, etc; e.g., `Array#reverse`.
+* 	A `StringArray` is __not__ an `Array` instance.
+* 	`Object.keys()` will __not__ work as expected. A `StringArray` instance is an `object` which manages an internal `array`.
+* 	When applied to a `StringArray`, [`Array.isArray()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray)  will return `false`.
+* 	While an effort has been made to retain fidelity to the ECMAScript standard for `Arrays`, no guarantee is made that method implementations are spec compliant. This is particularly the case where the spec stipulates additional checks, etc; e.g., `Array#reverse`.
+*	`[]` notation does __not__ work as expected. A `StringArray` is an `object`. Using bracket notation will set and return values on the `StringArray` itself, __not__ on the internally managed `array` instance. You can set properties directly on the `StringArray` as you can with any `object`; just ensure that this is treated as distinct from the `StringArray` array data.
 
 
 ===
