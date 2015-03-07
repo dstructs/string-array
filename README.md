@@ -27,10 +27,11 @@ Why not just use native `Arrays`? A `StringArray`
 		*	[sort()](#sort)
 		*	[splice()](#splice)
 	-	[Accessor Methods](#accessor-methods)
-		*	[concat()](#concat)
-		*	[join()](#join)
 		*	[indexOf()](#indexof)
 		*	[lastIndexOf()](#lastindexof)
+		*	[slice()](#slice)
+		*	[concat()](#concat)
+		*	[join()](#join)
 		*	[toString()](#tostring)
 		*	[toLocaleString()](#tolocalestring)
 		*	[toArray()](#toarray)
@@ -340,63 +341,6 @@ arr.toString();
 #### Accessor Methods
 
 
-<a name="concat"></a>
-##### [StringArray.prototype.concat( value0[, value1[,...]] )](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat)
-
-Concatenates this `StringArray` with other StringArray(s), array(s) of strings, and/or string(s).
-
-``` javascript
-var arr1 = new StringArray(),
-	arr2 = new StringArray();
-
-arr1.push( 'a', 'b', 'c' );
-arr2.push( 'd', 'e', 'f' );
-
-var arr3 = arr1.concat( arr2 );
-
-arr3 instanceof StringArray;
-// returns true
-
-arr3.toString();
-// returns 'a,b,c,d,e,f'
-
-var arr4 = arr3.concat( 'beep' );
-arr4.toString();
-// returns 'a,b,c,d,e,f,beep'
-
-var arr5 = arr1.concat( 'd', ['e','f'] );
-arr5.toString();
-// returns 'a,b,c,d,e,f'
-```
-
-__Note__: returns a new `StringArray` with the same `string` length constraints.
-
-
-
-<a name="join"></a>
-##### [StringArray.prototype.join( [sep] )](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join)
-
-Joins all `StringArray` values into a single `string`. The default value separator is `','`.
-
-``` javascript
-var arr = new StringArray();
-
-arr.push( 'a', 'b', 'c' );
-arr.join();
-// returns 'a,b,c'
-```
-
-To specify a different separator,
-
-``` javascript
-var arr = new StringArray();
-
-arr.push( 'a', 'b', 'c' );
-arr.join( ' - ' );
-// returns 'a - b - c'
-```
-
-
 
 <a name="indexof"></a>
 ##### [StringArray.prototype.indexOf( [str] )](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf)
@@ -431,6 +375,100 @@ arr.lastIndexOf( 'b' );
 
 arr.lastIndexOf( 'd' );
 // returns -1
+```
+
+
+<a name="slice"></a>
+##### [StringArray.prototype.slice( start[, end] )](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice)
+
+Extracts a section of a `StringArray` into a new `StringArray`. If not provided, `end` defaults to the array length.
+
+``` javascript
+var arr = new StringArray(),
+	slice;
+
+arr.push( 'a', 'b', 'c', 'd', 'e' );
+
+slice = arr.slice( 2 );
+slice.toString();
+// returns 'c,d,e'
+
+slice = arr.slice( -3 );
+slice.toString();
+// returns 'b,c,d,e'
+
+slice = arr.slice( 1, 3 );
+slice.toString();
+// returns 'b,c'
+
+slice = arr.slice( 1, -1 );
+slice.toString();
+// returns 'b,c,d'
+```
+
+__Note__: returns a new `StringArray` with the same `string` length constraints.
+
+
+
+
+
+
+<a name="concat"></a>
+##### [StringArray.prototype.concat( value0[, value1[,...]] )](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat)
+
+Concatenates this `StringArray` with other StringArray(s), array(s) of strings, and/or string(s).
+
+``` javascript
+var arr1 = new StringArray(),
+	arr2 = new StringArray();
+
+arr1.push( 'a', 'b', 'c' );
+arr2.push( 'd', 'e', 'f' );
+
+var arr3 = arr1.concat( arr2 );
+
+arr3 instanceof StringArray;
+// returns true
+
+arr3.toString();
+// returns 'a,b,c,d,e,f'
+
+var arr4 = arr3.concat( 'beep' );
+arr4.toString();
+// returns 'a,b,c,d,e,f,beep'
+
+var arr5 = arr1.concat( 'd', ['e','f'] );
+arr5.toString();
+// returns 'a,b,c,d,e,f'
+```
+
+__Note__: returns a new `StringArray` with the same `string` length constraints.
+
+
+
+
+
+<a name="join"></a>
+##### [StringArray.prototype.join( [sep] )](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join)
+
+Joins all `StringArray` values into a single `string`. The default value separator is `','`.
+
+``` javascript
+var arr = new StringArray();
+
+arr.push( 'a', 'b', 'c' );
+arr.join();
+// returns 'a,b,c'
+```
+
+To specify a different separator,
+
+``` javascript
+var arr = new StringArray();
+
+arr.push( 'a', 'b', 'c' );
+arr.join( ' - ' );
+// returns 'a - b - c'
 ```
 
 
