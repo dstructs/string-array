@@ -39,6 +39,7 @@ Why not just use native `Arrays`? A `StringArray`
 		*	[forEach()](#foreach)
 		*	[every()](#every)
 		*	[some()](#some)
+		*	[filter()](#filter)
 1. [Examples](#examples)
 1. [Notes](#notes)
 1. [Tests](#tests)
@@ -599,6 +600,31 @@ var bool = arr.some( function some( val, i, arr ) {
 ```
 
 __Note__: do __not__ use this as a __general__ method. Instead, use `Array.prototype.some.call()` when wanting to apply to non-`StringArray` objects.
+
+
+
+<a name="filter"></a>
+##### [StringArray.prototype.filter( clbk[, thisArg] )](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
+
+Returns a new `StringArray` containing only those elements which satisfy a test condition. The condition `clbk` is provided the following arguments:
+*	__value__: current element
+*	__index__: current element index
+*	__arr__: `StringArray` instance
+
+To specify the runtime `this` context for the callback, provide a `thisArg`.
+
+``` javascript
+var arr = new StringArray();
+arr.push( 'a', 'beep', 'boop', 'c' );
+
+var arr2 = arr.filter( function filter( val, i, arr ) {
+	return ( val.length > 1 );
+});
+arr2.toString();
+// returns 'beep,boop'
+```
+
+__Note__: do __not__ use this as a __general__ method. Instead, use `Array.prototype.filter.call()` when wanting to apply to non-`StringArray` objects.
 
 
 ===
