@@ -22,6 +22,7 @@ String Array
 		*	[splice()](#splice)
 	-	[Accessor Methods](#accessor-methods)
 		*	[toString()](#tostring)
+		*	[toLocaleString()](#tolocalestring)
 		*	[toArray()](#toarray)
 	-	[Iterator Methods](#iterator-methods)
 1. [Examples](#examples)
@@ -338,6 +339,22 @@ arr.push( 'a', 'b', 'c' );
 arr.toString();
 // returns 'a,b,c'
 ```
+
+
+
+<a name="tolocalestring"></a>
+##### [StringArray.prototype.toLocaleString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toLocaleString)
+
+Returns a locale specific `string` representation of a `StringArray`.
+
+``` javascript
+var arr = new StringArray();
+
+arr.push( 'a', 'b', 'c' );
+arr.toLocaleString();
+// returns 'a,b,c'
+```
+
 
 <a name="toarray"></a>
 ##### StringArray.prototype.toArray()
