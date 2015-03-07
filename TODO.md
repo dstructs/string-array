@@ -10,4 +10,8 @@ TODO
 1. isStringArray
 	-	similar in concept to isArray. See validate.io module
 	-	in fact, could just use the validate.io module
-2. 
+2. get method
+	-	fancy indexing
+3. set method
+	-	fancy indexing
+4. 

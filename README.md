@@ -379,15 +379,19 @@ arr.lastIndexOf( 'd' );
 
 
 <a name="slice"></a>
-##### [StringArray.prototype.slice( start[, end] )](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice)
+##### [StringArray.prototype.slice( [start[, end]] )](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice)
 
-Extracts a section of a `StringArray` into a new `StringArray`. If not provided, `end` defaults to the array length.
+Extracts a section of a `StringArray` into a new `StringArray`. If not provided, `start` defaults to `0` and `end` defaults to the array length.
 
 ``` javascript
 var arr = new StringArray(),
 	slice;
 
 arr.push( 'a', 'b', 'c', 'd', 'e' );
+
+slice = arr.slice();
+slice.toString();
+// returns 'a,b,c,d,e'
 
 slice = arr.slice( 2 );
 slice.toString();
