@@ -37,6 +37,8 @@ Why not just use native `Arrays`? A `StringArray`
 		*	[toArray()](#toarray)
 	-	[Iteration Methods](#iteration-methods)
 		*	[forEach()](#foreach)
+		*	[every()](#every)
+		*	[some()](#some)
 1. [Examples](#examples)
 1. [Notes](#notes)
 1. [Tests](#tests)
@@ -547,6 +549,56 @@ arr.forEach( function forEach( val, i, arr ) {
 	console.log( 'Value at index `' + i + '` is `' + val + '`.' );
 });
 ```
+
+__Note__: do __not__ use this as a __general__ method. Instead, use `Array.prototype.forEach.call()` when wanting to apply to non-`StringArray` objects.
+
+
+
+<a name="every"></a>
+##### [StringArray.prototype.every( clbk[, thisArg] )](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every)
+
+Returns `true` if every element passes a provided condition; otherwise, `false`. The condition `clbk` is provided the following arguments:
+*	__value__: current element
+*	__index__: current element index
+*	__arr__: `StringArray` instance
+
+To specify the runtime `this` context for the callback, provide a `thisArg`.
+
+``` javascript
+var arr = new StringArray();
+arr.push( 'a', 'b', 'c' );
+
+var bool = arr.every( function every( val, i, arr ) {
+	return ( val.length < 3 );
+});
+// returns true
+```
+
+__Note__: do __not__ use this as a __general__ method. Instead, use `Array.prototype.every.call()` when wanting to apply to non-`StringArray` objects.
+
+
+
+<a name="some"></a>
+##### [StringArray.prototype.some( clbk[, thisArg] )](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some)
+
+Returns `true` if at least __one__ element passes a provided condition; otherwise, `false`. The condition `clbk` is provided the following arguments:
+*	__value__: current element
+*	__index__: current element index
+*	__arr__: `StringArray` instance
+
+To specify the runtime `this` context for the callback, provide a `thisArg`.
+
+``` javascript
+var arr = new StringArray();
+arr.push( 'a', 'beep', 'c' );
+
+var bool = arr.some( function some( val, i, arr ) {
+	return ( val.length > 1 );
+});
+// returns true
+```
+
+__Note__: do __not__ use this as a __general__ method. Instead, use `Array.prototype.some.call()` when wanting to apply to non-`StringArray` objects.
 
 
 ===
