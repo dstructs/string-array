@@ -1,4 +1,4 @@
-string-array
+String Array
 ===
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url]
 
@@ -8,7 +8,7 @@ string-array
 ## Installation
 
 ``` bash
-$ npm install compute-string-array
+$ npm install string-array
 ```
 
 For use in the browser, use [browserify](https://github.com/substack/node-browserify).
@@ -17,18 +17,300 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 ## Usage
 
 ``` javascript
-var foo = require( 'compute-string-array' );
+var StringArray = require( 'string-array' );
 ```
 
-#### foo( arr )
 
-What does this function do?
+#### StringArray( [len, opts] )
+
+String array constructor. If provided a length `len`, initializes an empty `StringArray` of length `len`.
+
+``` javascript
+var arr = new StringArray();
+
+arr.length;
+// returns 0
+
+arr = new StringArray( 20 );
+
+arr.length;
+//returns 20
+```
+
+The constructor accepts an options `object` with the following possible options:
+*	__min__: minimum length of a `string` added to the `array`
+*	__max__: maximum length of a `string` added to the `array`
+
+``` javascript
+var opts = {
+	'min': 5,
+	'max': 10
+};
+
+var arr = new StringArray( opts );
+
+// Valid string...
+arr.push( 'Hello' );
+
+// Invalid string...
+arr.push( 'a' );
+// throws RangeError
+
+// Invalid string...
+arr.push( 'How are you doing today?' );
+// throw RangeError
+```
+
+
+#### Properties
+
+
+##### [length](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/length)
+
+Returns the number of `array` elements.
+
+``` javascript
+var arr = new StringArray();
+
+arr.length;
+// returns 0
+
+arr.push( 'beep' );
+arr.length;
+// returns 1
+
+arr.length = 0;
+arr.length;
+// returns 0
+```
+
+
+##### minLength
+
+Specifies the minimum allowed length of `strings` added to the `array`. Default length is `0`.
+
+``` javascript
+var arr = new StringArray();
+
+arr.minLength;
+// returns 0
+
+// Valid string...
+arr.push( 'beep' );
+
+arr.minLength = 5;
+
+// Invalid string...
+arr.push( 'beep' );
+// throws RangeError
+```
+
+
+##### maxLength
+
+Specifies the maximum allowed length of `strings` added to the `array`. Default length is `2^32-1`.
+
+``` javascript
+var arr = new StringArray();
+
+arr.maxLength;
+// returns 2^31-1
+
+// Valid string...
+arr.push( 'beep' );
+
+arr.maxLength = 3;
+
+// Invalid string...
+arr.push( 'beep' );
+// throws RangeError
+```
+
+
+#### Mutator Methods
+
+
+##### [StringArray.prototype.push()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push)
+
+Adds one or more elements to the end of an `array` and returns the new `array` length.
+
+``` javascript
+var arr = new StringArray();
+
+arr.push( 'a', 'b', 'c' );
+// returns 3
+
+arr.toString();
+// returns 'a,b,c'
+
+arr.push( 'd' );
+// returns 4
+
+arr.toString();
+// returns 'a,b,c,d'
+```
+
+
+##### [StringArray.prototype.pop()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/pop)
+
+Removes the last `array` element and returns that element.
+
+``` javascript
+var arr = new StringArray();
+
+arr.push( 'a', 'b', 'c' );
+arr.toString();
+// returns 'a,b,c'
+
+arr.pop();
+// returns 'c'
+
+arr.toString();
+// returns 'a,b'
+```
+
+
+
+##### [StringArray.prototype.unshift()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift)
+
+Adds one or more elements to the front of an `array` and returns the new `array` length.
+
+``` javascript
+var arr = new StringArray();
+
+arr.push( 'a', 'b', 'c' );
+// returns 3
+
+arr.toString();
+// returns 'a,b,c'
+
+arr.unshift( 'd' );
+// returns 4
+
+arr.toString();
+// returns 'd,a,b,c'
+```
+
+
+##### [StringArray.prototype.shift()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/shift)
+
+Removes the first `array` element and returns that element.
+
+``` javascript
+var arr = new StringArray();
+
+arr.push( 'a', 'b', 'c' );
+arr.toString();
+// returns 'a,b,c'
+
+arr.shift();
+// returns 'a'
+
+arr.toString();
+// returns 'b,c'
+```
+
+
+##### [StringArray.prototype.reverse()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse)
+
+Removes the `array` order.
+
+``` javascript
+var arr = new StringArray();
+
+arr.push( 'a', 'b', 'c' );
+arr.toString();
+// returns 'a,b,c'
+
+arr.reverse();
+arr.toString();
+// returns 'c,b,a'
+```
+
+
+##### [StringArray.prototype.sort()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
+
+Sorts the `array` elements __in place__.
+
+``` javascript
+var arr = new StringArray();
+
+function descending( a, b ) {
+	if ( a < b ) {
+		return 1;
+	}
+	if ( a > b ) {
+		return -1;
+	}
+	return 0;
+}
+
+arr.push( 'a', 'b', 'c' );
+arr.toString();
+// returns 'a,b,c'
+
+arr.sort( descending );
+arr.toString();
+// returns 'c,b,a'
+```
+
+
+##### [StringArray.prototype.splice()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice)
+
+Add or remove `array` elements.
+
+``` javascript
+var arr = new StringArray();
+
+arr.push( 'a', 'b', 'c' );
+arr.toString();
+// returns 'a,b,c'
+
+arr.splice( 1, 1 );
+arr.toString();
+// returns 'a,c'
+
+arr.splice( 1, 0, 'b' );
+arr.toString();
+// returns 'a,b,c'
+```
+
+
+
+#### Accessor Methods
+
+##### [StringArray.prototype.toString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toString)
+
+Returns a `string` representation of a `StringArray`.
+
+``` javascript
+var arr = new StringArray();
+
+arr.push( 'a', 'b', 'c' );
+arr.toString();
+// returns 'a,b,c'
+```
+
+##### StringArray.prototype.toArray()
+
+Returns a native `array` representation of a `StringArray`.
+
+``` javascript
+var arr = new StringArray();
+
+arr.push( 'a', 'b', 'c' );
+arr.toArray();
+// returns ['a','b','c']
+```
+
+__Note__: changes to the returned `array` will __not__ affect the `StringArray`.
+
 
 
 ## Examples
 
 ``` javascript
-var foo = require( 'compute-string-array' );
+var StringArray = require( 'string-array' );
 ```
 
 To run the example code from the top-level application directory,
@@ -36,6 +318,14 @@ To run the example code from the top-level application directory,
 ``` bash
 $ node ./examples/index.js
 ```
+
+
+## Notes
+
+1. `Object.keys()` will __not__ work.
+2. A `StringArray` is __not__ an `Array` instance.
+3. `Array.isArray` when applied to a `StringArray` will return `false`.
+4. 
 
 
 ## Tests
@@ -77,20 +367,20 @@ $ make view-cov
 Copyright &copy; 2015. Athan Reines.
 
 
-[npm-image]: http://img.shields.io/npm/v/compute-string-array.svg
-[npm-url]: https://npmjs.org/package/compute-string-array
+[npm-image]: http://img.shields.io/npm/v/string-array.svg
+[npm-url]: https://npmjs.org/package/string-array
 
-[travis-image]: http://img.shields.io/travis/compute-io/string-array/master.svg
-[travis-url]: https://travis-ci.org/compute-io/string-array
+[travis-image]: http://img.shields.io/travis/kgryte/string-array/master.svg
+[travis-url]: https://travis-ci.org/kgryte/string-array
 
-[coveralls-image]: https://img.shields.io/coveralls/compute-io/string-array/master.svg
-[coveralls-url]: https://coveralls.io/r/compute-io/string-array?branch=master
+[coveralls-image]: https://img.shields.io/coveralls/kgryte/string-array/master.svg
+[coveralls-url]: https://coveralls.io/r/kgryte/string-array?branch=master
 
-[dependencies-image]: http://img.shields.io/david/compute-io/string-array.svg
-[dependencies-url]: https://david-dm.org/compute-io/string-array
+[dependencies-image]: http://img.shields.io/david/kgryte/string-array.svg
+[dependencies-url]: https://david-dm.org/kgryte/string-array
 
-[dev-dependencies-image]: http://img.shields.io/david/dev/compute-io/string-array.svg
-[dev-dependencies-url]: https://david-dm.org/dev/compute-io/string-array
+[dev-dependencies-image]: http://img.shields.io/david/dev/kgryte/string-array.svg
+[dev-dependencies-url]: https://david-dm.org/dev/kgryte/string-array
 
-[github-issues-image]: http://img.shields.io/github/issues/compute-io/string-array.svg
-[github-issues-url]: https://github.com/compute-io/string-array/issues
+[github-issues-image]: http://img.shields.io/github/issues/kgryte/string-array.svg
+[github-issues-url]: https://github.com/kgryte/string-array/issues

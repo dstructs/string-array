@@ -1,5 +1,5 @@
 {
-  "name": "compute-string-array",
+  "name": "string-array",
   "version": "0.0.0",
   "description": "String array class.",
   "author": {
@@ -20,17 +20,23 @@
   "main": "./lib",
   "repository": {
     "type": "git",
-    "url": "git://github.com/compute-io/string-array.git"
+    "url": "git://github.com/kgryte/string-array.git"
   },
   "keywords": [
-    "compute.io",
-    "compute",
-    "computation"
+    "array",
+    "string",
+    "stringarray",
+    "class",
+    "extends",
+    "subclass"
   ],
   "bugs": {
-    "url": "https://github.com/compute-io/string-array/issues"
+    "url": "https://github.com/kgryte/string-array/issues"
   },
-  "dependencies": {},
+  "dependencies": {
+    "validate.io-nonnegative-integer": "^1.0.0",
+    "validate.io-object": "^1.0.3"
+  },
   "devDependencies": {
     "chai": "2.x.x",
     "mocha": "2.x.x",
