@@ -28,6 +28,7 @@ Why not just use native `Arrays`? A `StringArray`
 		*	[splice()](#splice)
 	-	[Accessor Methods](#accessor-methods)
 		*	[concat()](#concat)
+		*	[join()](#join)
 		*	[toString()](#tostring)
 		*	[toLocaleString()](#tolocalestring)
 		*	[toArray()](#toarray)
@@ -177,7 +178,7 @@ __Note__: setting the `maxLength` after elements have been added to the `array` 
 
 
 <a name="push"></a>
-##### [StringArray.prototype.push()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push)
+##### [StringArray.prototype.push( string0[, string1[,...]] )](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push)
 
 Adds one or more elements to the end of an `array` and returns the new `array` length.
 
@@ -220,7 +221,7 @@ arr.toString();
 
 
 <a name="unshift"></a>
-##### [StringArray.prototype.unshift()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift)
+##### [StringArray.prototype.unshift( string0[, string1[,...]] )](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift)
 
 Adds one or more elements to the front of an `array` and returns the new `array` length.
 
@@ -280,7 +281,7 @@ arr.toString();
 
 
 <a name="sort"></a>
-##### [StringArray.prototype.sort()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
+##### [StringArray.prototype.sort( [comparator] )](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
 
 Sorts the `array` elements __in place__.
 
@@ -308,7 +309,7 @@ arr.toString();
 
 
 <a name="splice"></a>
-##### [StringArray.prototype.splice()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice)
+##### [StringArray.prototype.splice( start, deleteCount[, string0[, string1[,...]]] )](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice)
 
 Adds and/or removes `array` elements and returns any removed elements,
 
@@ -338,7 +339,7 @@ arr.toString();
 
 
 <a name="concat"></a>
-##### [StringArray.prototype.concat()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat)
+##### [StringArray.prototype.concat( value0[, value1[,...]] )](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat)
 
 Concatenates this `StringArray` with other StringArray(s), array(s) of strings, and/or string(s).
 
@@ -366,7 +367,34 @@ arr5.toString();
 // returns 'a,b,c,d,e,f'
 ```
 
-__Note__: returns a new `StringArray` having the same `string` length constraints.
+__Note__: returns a new `StringArray` with the same `string` length constraints.
+
+
+
+<a name="join"></a>
+##### [StringArray.prototype.join( [sep] )](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join)
+
+Joins all `StringArray` values into a single `string`. The default value separator is `','`;
+
+``` javascript
+var arr = new StringArray();
+
+arr.push( 'a', 'b', 'c' );
+arr.join();
+// returns 'a,b,c';
+```
+
+To specify a different separator,
+
+``` javascript
+var arr = new StringArray();
+
+arr.push( 'a', 'b', 'c' );
+arr.join( ' - ' );
+// returns 'a - b - c';
+```
+
+
 
 
 <a name="tostring"></a>
