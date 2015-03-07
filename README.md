@@ -401,7 +401,7 @@ arr.join( ' - ' );
 <a name="indexof"></a>
 ##### [StringArray.prototype.indexOf( [str] )](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf)
 
-Returns the first index of a `StringArray` value equal to a specified value. Returns `-1` is not found.
+Returns the first index of a `StringArray` value equal to a specified value. Returns `-1` if not found.
 
 ``` javascript
 var arr = new StringArray();
@@ -420,12 +420,12 @@ arr.indexOf( 'd' );
 <a name="lastindexof"></a>
 ##### [StringArray.prototype.lastIndexOf( [str] )](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/lastIndexOf)
 
-Returns the last index of a `StringArray` value equal to a specified value. Returns `-1` is not found.
+Returns the last index of a `StringArray` value equal to a specified value. Returns `-1` if not found.
 
 ``` javascript
 var arr = new StringArray();
 
-arr.push( 'a', 'b', 'b', c' );
+arr.push( 'a', 'b', 'b', 'c' );
 arr.lastIndexOf( 'b' );
 // returns 2
 
