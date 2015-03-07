@@ -40,6 +40,9 @@ Why not just use native `Arrays`? A `StringArray`
 		*	[every()](#every)
 		*	[some()](#some)
 		*	[filter()](#filter)
+		*	[map()](#map)
+		*	[reduce()](#reduce)
+		*	[reduceRight()](#reduceRight)
 1. [Examples](#examples)
 1. [Notes](#notes)
 1. [Tests](#tests)
@@ -624,7 +627,37 @@ arr2.toString();
 // returns 'beep,boop'
 ```
 
-__Note__: do __not__ use this as a __general__ method. Instead, use `Array.prototype.filter.call()` when wanting to apply to non-`StringArray` objects.
+__Notes__: 
+*	do __not__ use this as a __general__ method. Instead, use `Array.prototype.filter.call()` when wanting to apply to non-`StringArray` objects.
+*	returns a new `StringArray` instance having the same length constraints.
+
+
+
+<a name="map"></a>
+##### [StringArray.prototype.map( clbk[, thisArg] )](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+
+Applies a `function` to each `StringArray` element and maps the result of each invocation to an element in a new `StringArray`. The condition `clbk` is provided the following arguments:
+*	__value__: current element
+*	__index__: current element index
+*	__arr__: `StringArray` instance
+
+To specify the runtime `this` context for the callback, provide a `thisArg`.
+
+``` javascript
+var arr = new StringArray();
+arr.push( 'a', 'beep', 'boop', 'c' );
+
+var arr2 = arr.map( function map( val, i, arr ) {
+	return val + '-bot';
+});
+arr2.toString();
+// returns 'a-bot,beep-bot,boop-bot,c-bot'
+```
+
+__Notes__:
+*	the map `function` should return only `string` primitives. A `non-string` primitive result will throw an `Error`.
+*	do __not__ use this as a __general__ method. Instead, use `Array.prototype.map.call()` when wanting to apply to non-`StringArray` objects.
+*	returns a new `StringArray` instance having __no__ length constraints.
 
 
 ===
