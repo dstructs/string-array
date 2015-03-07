@@ -27,6 +27,7 @@ Why not just use native `Arrays`? A `StringArray`
 		*	[sort()](#sort)
 		*	[splice()](#splice)
 	-	[Accessor Methods](#accessor-methods)
+		*	[concat()](#concat)
 		*	[toString()](#tostring)
 		*	[toLocaleString()](#tolocalestring)
 		*	[toArray()](#toarray)
@@ -335,6 +336,39 @@ arr.toString();
 ===
 #### Accessor Methods
 
+
+<a name="concat"></a>
+##### [StringArray.prototype.concat()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat)
+
+Concatenates this `StringArray` with other StringArray(s), array(s) of strings, and/or string(s).
+
+``` javascript
+var arr1 = new StringArray(),
+	arr2 = new StringArray();
+
+arr1.push( 'a', 'b', 'c' );
+arr2.push( 'd', 'e', 'f' );
+
+var arr3 = arr1.concat( arr2 );
+
+arr3 instanceof StringArray;
+// returns true
+
+arr3.toString();
+// returns 'a,b,c,d,e,f'
+
+var arr4 = arr3.concat( 'beep' );
+arr4.toString();
+// returns 'a,b,c,d,e,f,beep'
+
+var arr5 = arr1.concat( 'd', ['e','f'] );
+arr5.toString();
+// returns 'a,b,c,d,e,f'
+```
+
+__Note__: returns a new `StringArray` having the same `string` length constraints.
+
+
 <a name="tostring"></a>
 ##### [StringArray.prototype.toString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toString)
 
@@ -410,7 +444,20 @@ $ node ./examples/index.js
 * 	When applied to a `StringArray`, [`Array.isArray()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray)  will return `false`.
 * 	While an effort has been made to retain fidelity to the ECMAScript standard for `Arrays`, no guarantee is made that method implementations are spec compliant. This is particularly the case where the spec stipulates additional checks, etc; e.g., `Array#reverse`.
 *	`[]` notation does __not__ work as expected. A `StringArray` is an `object`. Using bracket notation will set and return values on the `StringArray` itself, __not__ on the internally managed `array` instance. You can set properties directly on the `StringArray` as you can with any `object`; just ensure that this is treated as distinct from the `StringArray` array data.
+*	Working with external methods expecting native `arrays` will require marshalling and unmarshalling of `StringArray` data to and from `arrays`.
 
+	``` javascript 
+	var arr = new StringArray();
+
+	arr.push( 'a', 'b', 'c' );
+
+	// Some method expecting native arrays...
+	var nativeArray = foo( arr.toArray() );
+
+	// Assuming the native array elements are all strings, marshal the data back into a string array...
+	arr = new StringArray();
+	arr.push.apply( arr, nativeArray );
+	```
 
 ===
 ## Tests
