@@ -37,9 +37,9 @@ arr.length;
 //returns 20
 ```
 
-The constructor accepts an options `object` with the following possible options:
-*	__min__: minimum length of a `string` added to the `array`
-*	__max__: maximum length of a `string` added to the `array`
+The constructor accepts an options `object` with the following options:
+*	__min__: minimum length of a `string` added to the `array`. Default: `0`.
+*	__max__: maximum length of a `string` added to the `array`. Default: `2^32-1`.
 
 ``` javascript
 var opts = {
@@ -330,9 +330,10 @@ $ node ./examples/index.js
 
 ## Notes
 
-* `Object.keys()` will __not__ work as expected. A `StringArray` instance is an `object` which manages an internal `array`.
 * A `StringArray` is __not__ an `Array` instance.
+* `Object.keys()` will __not__ work as expected. A `StringArray` instance is an `object` which manages an internal `array`.
 * When applied to a `StringArray`, [`Array.isArray()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray)  will return `false`.
+* While an effort has been made to retain fidelity to the ECMAScript standard for `Arrays`, no guarantee is made that method implementations are spec compliant. This is particularly the case where the spec stipulates additional checks, etc; e.g., `Array#reverse`.
 
 
 ## Tests
