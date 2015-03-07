@@ -213,7 +213,7 @@ arr.toString();
 
 ##### [StringArray.prototype.reverse()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse)
 
-Removes the `array` order.
+Reverses the `array` order.
 
 ``` javascript
 var arr = new StringArray();
@@ -257,7 +257,7 @@ arr.toString();
 
 ##### [StringArray.prototype.splice()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice)
 
-Add or remove `array` elements.
+Adds and/or removes `array` elements.
 
 ``` javascript
 var arr = new StringArray();
@@ -324,7 +324,7 @@ $ node ./examples/index.js
 
 1. `Object.keys()` will __not__ work.
 2. A `StringArray` is __not__ an `Array` instance.
-3. `Array.isArray` when applied to a `StringArray` will return `false`.
+3. When applied to a `StringArray`, [`Array.isArray()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray)  will return `false`.
 4. 
 
 
