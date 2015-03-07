@@ -29,6 +29,8 @@ Why not just use native `Arrays`? A `StringArray`
 	-	[Accessor Methods](#accessor-methods)
 		*	[concat()](#concat)
 		*	[join()](#join)
+		*	[indexOf()](#indexof)
+		*	[lastIndexOf()](#lastindexof)
 		*	[toString()](#tostring)
 		*	[toLocaleString()](#tolocalestring)
 		*	[toArray()](#toarray)
@@ -374,14 +376,14 @@ __Note__: returns a new `StringArray` with the same `string` length constraints.
 <a name="join"></a>
 ##### [StringArray.prototype.join( [sep] )](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join)
 
-Joins all `StringArray` values into a single `string`. The default value separator is `','`;
+Joins all `StringArray` values into a single `string`. The default value separator is `','`.
 
 ``` javascript
 var arr = new StringArray();
 
 arr.push( 'a', 'b', 'c' );
 arr.join();
-// returns 'a,b,c';
+// returns 'a,b,c'
 ```
 
 To specify a different separator,
@@ -391,7 +393,44 @@ var arr = new StringArray();
 
 arr.push( 'a', 'b', 'c' );
 arr.join( ' - ' );
-// returns 'a - b - c';
+// returns 'a - b - c'
+```
+
+
+
+<a name="indexof"></a>
+##### [StringArray.prototype.indexOf( [str] )](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf)
+
+Returns the first index of a `StringArray` value equal to a specified value. Returns `-1` is not found.
+
+``` javascript
+var arr = new StringArray();
+
+arr.push( 'a', 'b', 'c' );
+arr.indexOf( 'b' );
+// returns 1
+
+arr.indexOf( 'd' );
+// returns -1
+```
+
+
+
+
+<a name="lastindexof"></a>
+##### [StringArray.prototype.lastIndexOf( [str] )](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/lastIndexOf)
+
+Returns the last index of a `StringArray` value equal to a specified value. Returns `-1` is not found.
+
+``` javascript
+var arr = new StringArray();
+
+arr.push( 'a', 'b', 'b', c' );
+arr.lastIndexOf( 'b' );
+// returns 2
+
+arr.lastIndexOf( 'd' );
+// returns -1
 ```
 
 
