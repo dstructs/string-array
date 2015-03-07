@@ -322,10 +322,9 @@ $ node ./examples/index.js
 
 ## Notes
 
-1. `Object.keys()` will __not__ work.
-2. A `StringArray` is __not__ an `Array` instance.
-3. When applied to a `StringArray`, [`Array.isArray()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray)  will return `false`.
-4. 
+* `Object.keys()` will __not__ work as expected. A `StringArray` instance is an `object` which manages an internal `array`.
+* A `StringArray` is __not__ an `Array` instance.
+* When applied to a `StringArray`, [`Array.isArray()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray)  will return `false`.
 
 
 ## Tests
