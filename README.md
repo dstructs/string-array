@@ -606,6 +606,63 @@ __Note__: do __not__ use this as a __general__ method. Instead, use `Array.proto
 
 ``` javascript
 var StringArray = require( 'string-array' );
+
+var arr, val, bool;
+
+arr = new StringArray();
+
+arr.push( 'a', 'b', 'c' );
+arr.length;
+// returns 3
+
+arr.toString();
+// returns 'a,b,c'
+
+val = arr.pop();
+// returns 'c'
+
+val = arr.shift();
+// returns 'a'
+
+arr.unshift( 'c' );
+arr.length;
+// returns 2
+
+arr.toString();
+// returns 'c,b'
+
+arr.splice( 0, 0, 'd', 'e', 'f' );
+arr.length;
+// returns 5
+
+arr.toString();
+// returns 'c,d,e,f,b'
+
+val = arr.slice( 1, -1 );
+// returns 'd,e,f'
+
+arr.forEach( function forEach( val, i ) {
+	console.log( i, val );
+});
+
+arr.sort();
+arr.toString();
+// returns 'b,c,d,e,f'
+
+arr.reverse();
+arr.toString();
+// returns 'f,e,d,c,b'
+
+bool = arr.every( function every( val, i ) {
+	return ( val < 'g' );
+});
+// returns true
+
+
+bool = arr.some( function some( val, i ) {
+	return ( val >= 'c' );
+});
+// returns true
 ```
 
 To run the example code from the top-level application directory,

@@ -10,8 +10,21 @@ TODO
 1. isStringArray
 	-	similar in concept to isArray. See validate.io module
 	-	in fact, could just use the validate.io module
+		-	will want the primitive string version
+	-	do we want to include min and max options???
 2. get method
 	-	fancy indexing
+		-	regexp
+		-	logical
+		-	boolean
+		-	array of indices
+		-	sequence
+		-	single index
 3. set method
 	-	fancy indexing
+		-	logical
+		-	boolean
+		-	array of indices
+		-	sequence
+		-	single index
 4. 
