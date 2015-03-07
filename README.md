@@ -5,6 +5,34 @@ String Array
 > String array class.
 
 
+1. [Install](#installation)
+1. [Usage](#usage)
+	-	[StringArray()](#string-array)
+	-	[Properties](#properties)
+		*	[length](#length)
+		*	[minLength](#minlength)
+		*	[maxLength](#maxlength)
+	-	[Mutator Methods](#mutator-methods)
+		*	[push()](#push)
+		*	[pop()](#pop)
+		*	[unshift()](#unshift)
+		*	[shift()](#shift)
+		*	[reverse()](#reverse)
+		*	[sort()](#sort)
+		*	[splice()](#splice)
+	-	[Accessor Methods](#accessor-methods)
+		*	[toString()](#tostring)
+		*	[toArray()](#toarray)
+	-	[Iterator Methods](#iterator-methods)
+1. [Examples](#examples)
+1. [Notes](#notes)
+1. [Tests](#tests)
+	-	[Unit](#unit)
+	-	[Coverage](#test-coverage)
+1. [License](#license)
+
+
+===
 ## Installation
 
 ``` bash
@@ -21,6 +49,7 @@ var StringArray = require( 'string-array' );
 ```
 
 
+<a name="string-array"></a>
 #### StringArray( [len, opts] )
 
 String array constructor. If provided a length `len`, initializes an empty `StringArray` of length `len`.
@@ -65,6 +94,7 @@ arr.push( 'How are you doing today?' );
 #### Properties
 
 
+<a name="length"></a>
 ##### [length](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/length)
 
 Returns the number of `array` elements.
@@ -85,6 +115,7 @@ arr.length;
 ```
 
 
+<a name="minlength"></a>
 ##### minLength
 
 Specifies the minimum allowed length of `strings` added to the `array`. Default length is `0`.
@@ -108,6 +139,7 @@ arr.push( 'beep' );
 __Note__: setting the `minLength` after elements have been added to the `array` does __not__ affect the existing elements; the setting only applies to future `strings` added to the `array`.
 
 
+<a name="maxlength"></a>
 ##### maxLength
 
 Specifies the maximum allowed length of `strings` added to the `array`. Default length is `2^32-1`.
@@ -134,6 +166,7 @@ __Note__: setting the `maxLength` after elements have been added to the `array` 
 #### Mutator Methods
 
 
+<a name="push"></a>
 ##### [StringArray.prototype.push()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push)
 
 Adds one or more elements to the end of an `array` and returns the new `array` length.
@@ -155,6 +188,7 @@ arr.toString();
 ```
 
 
+<a name="pop"></a>
 ##### [StringArray.prototype.pop()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/pop)
 
 Removes the last `array` element and returns that element.
@@ -175,6 +209,7 @@ arr.toString();
 
 
 
+<a name="unshift"></a>
 ##### [StringArray.prototype.unshift()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift)
 
 Adds one or more elements to the front of an `array` and returns the new `array` length.
@@ -196,6 +231,7 @@ arr.toString();
 ```
 
 
+<a name="shift"></a>
 ##### [StringArray.prototype.shift()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/shift)
 
 Removes the first `array` element and returns that element.
@@ -215,6 +251,7 @@ arr.toString();
 ```
 
 
+<a name="reverse"></a>
 ##### [StringArray.prototype.reverse()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse)
 
 Reverses the `array` order.
@@ -232,6 +269,7 @@ arr.toString();
 ```
 
 
+<a name="sort"></a>
 ##### [StringArray.prototype.sort()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
 
 Sorts the `array` elements __in place__.
@@ -259,6 +297,7 @@ arr.toString();
 ```
 
 
+<a name="splice"></a>
 ##### [StringArray.prototype.splice()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice)
 
 Adds and/or removes `array` elements and returns any removed elements,
@@ -287,6 +326,7 @@ arr.toString();
 
 #### Accessor Methods
 
+<a name="tostring"></a>
 ##### [StringArray.prototype.toString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toString)
 
 Returns a `string` representation of a `StringArray`.
@@ -299,6 +339,7 @@ arr.toString();
 // returns 'a,b,c'
 ```
 
+<a name="toarray"></a>
 ##### StringArray.prototype.toArray()
 
 Returns a native `array` representation of a `StringArray`.
