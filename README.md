@@ -24,7 +24,7 @@ String Array
 		*	[toString()](#tostring)
 		*	[toLocaleString()](#tolocalestring)
 		*	[toArray()](#toarray)
-	-	[Iterator Methods](#iterator-methods)
+	-	[Iteration Methods](#iteration-methods)
 1. [Examples](#examples)
 1. [Notes](#notes)
 1. [Tests](#tests)
@@ -92,6 +92,7 @@ arr.push( 'How are you doing today?' );
 ```
 
 
+===
 #### Properties
 
 
@@ -164,6 +165,7 @@ arr.push( 'beep' );
 __Note__: setting the `maxLength` after elements have been added to the `array` does __not__ affect the existing elements; the setting only applies to future `strings` added to the `array`.
 
 
+===
 #### Mutator Methods
 
 
@@ -324,7 +326,7 @@ arr.toString();
 ```
 
 
-
+===
 #### Accessor Methods
 
 <a name="tostring"></a>
@@ -373,6 +375,14 @@ __Note__: changes to the returned `array` will __not__ affect the `StringArray`.
 
 
 
+
+===
+#### Iteration Methods
+
+
+
+
+===
 ## Examples
 
 ``` javascript
@@ -386,6 +396,7 @@ $ node ./examples/index.js
 ```
 
 
+===
 ## Notes
 
 * A `StringArray` is __not__ an `Array` instance.
@@ -394,6 +405,7 @@ $ node ./examples/index.js
 * While an effort has been made to retain fidelity to the ECMAScript standard for `Arrays`, no guarantee is made that method implementations are spec compliant. This is particularly the case where the spec stipulates additional checks, etc; e.g., `Array#reverse`.
 
 
+===
 ## Tests
 
 ### Unit
