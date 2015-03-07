@@ -105,6 +105,8 @@ arr.push( 'beep' );
 // throws RangeError
 ```
 
+__Note__: setting the `minLength` after elements have been added to the `array` does __not__ affect the existing elements; the setting only applies to future `strings` added to the `array`.
+
 
 ##### maxLength
 
@@ -125,6 +127,8 @@ arr.maxLength = 3;
 arr.push( 'beep' );
 // throws RangeError
 ```
+
+__Note__: setting the `maxLength` after elements have been added to the `array` does __not__ affect the existing elements; the setting only applies to future `strings` added to the `array`.
 
 
 #### Mutator Methods
@@ -257,7 +261,7 @@ arr.toString();
 
 ##### [StringArray.prototype.splice()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice)
 
-Adds and/or removes `array` elements.
+Adds and/or removes `array` elements and returns any removed elements,
 
 ``` javascript
 var arr = new StringArray();
@@ -267,10 +271,14 @@ arr.toString();
 // returns 'a,b,c'
 
 arr.splice( 1, 1 );
+// returns ['b']
+
 arr.toString();
 // returns 'a,c'
 
 arr.splice( 1, 0, 'b' );
+// returns []
+
 arr.toString();
 // returns 'a,b,c'
 ```
