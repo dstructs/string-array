@@ -36,6 +36,7 @@ Why not just use native `Arrays`? A `StringArray`
 		*	[toLocaleString()](#tolocalestring)
 		*	[toArray()](#toarray)
 	-	[Iteration Methods](#iteration-methods)
+		*	[forEach()](#foreach)
 1. [Examples](#examples)
 1. [Notes](#notes)
 1. [Tests](#tests)
@@ -528,7 +529,24 @@ __Note__: changes to the returned `array` will __not__ affect the `StringArray`.
 ===
 #### Iteration Methods
 
+<a name="foreach"></a>
+##### [StringArray.prototype.forEach( clbk[, thisArg] )](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
 
+Executes a provided `function` once for every `StringArray` element. The `clbk` is provided the following arguments:
+*	__value__: current element
+*	__index__: current element index
+*	__arr__: `StringArray` instance
+
+To specify the runtime `this` context for the callback, provide a `thisArg`.
+
+``` javascript
+var arr = new StringArray();
+arr.push( 'a', 'b', 'c' );
+
+arr.forEach( function forEach( val, i, arr ) {
+	console.log( 'Value at index `' + i + '` is `' + val + '`.' );
+});
+```
 
 
 ===
