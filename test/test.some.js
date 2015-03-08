@@ -18,7 +18,7 @@ var expect = chai.expect,
 
 // TESTS //
 
-describe( 'StringArray#every', function tests() {
+describe( 'StringArray#some', function tests() {
 
 	var arr;
 
@@ -26,8 +26,8 @@ describe( 'StringArray#every', function tests() {
 		arr = new StringArray();
 	});
 
-	it( 'should provide an every function', function test() {
-		expect( arr.every ).to.be.a( 'function' );
+	it( 'should provide a some function', function test() {
+		expect( arr.some ).to.be.a( 'function' );
 	});
 
 	it( 'should throw an error if not provided a callback function', function test() {
@@ -47,7 +47,7 @@ describe( 'StringArray#every', function tests() {
 		}
 		function badValue( value ) {
 			return function() {
-				arr.every( value );
+				arr.some( value );
 			};
 		}
 	});
@@ -55,8 +55,8 @@ describe( 'StringArray#every', function tests() {
 	it( 'should positively validate', function test() {
 		arr.push( 'a', 'b', 'c' );
 
-		var bool = arr.every( function every( val ) {
-			return ( val.length > 0 );
+		var bool = arr.some( function some( val ) {
+			return ( val > 'a' );
 		});
 		assert.ok( bool );
 	});
@@ -64,8 +64,8 @@ describe( 'StringArray#every', function tests() {
 	it( 'should negatively validate', function test() {
 		arr.push( 'a', 'b', 'c' );
 
-		var bool = arr.every( function every( val ) {
-			return ( val < 'b' );
+		var bool = arr.some( function some( val ) {
+			return ( val > 'd' );
 		});
 		assert.notOk( bool );
 	});
@@ -73,13 +73,13 @@ describe( 'StringArray#every', function tests() {
 	it( 'should accept a `this` context', function test() {
 		arr.push( 'a', 'b', 'c' );
 
-		var bool = arr.every( every, arr );
+		var bool = arr.some( some, arr );
 		assert.ok( bool );
 
-		function every( val ) {
+		function some( val ) {
 			/* jshint validthis:true */
 			assert.ok( this instanceof StringArray );
-			return ( val.length > 0 );
+			return ( val > 'a' );
 		}
 	});
 
