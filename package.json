@@ -34,10 +34,13 @@
     "url": "https://github.com/kgryte/string-array/issues"
   },
   "dependencies": {
+    "compute-unique": "^1.0.1",
     "type-name": "^1.0.1",
     "validate.io-array": "^1.0.3",
+    "validate.io-boolean-primitive": "^1.0.0",
     "validate.io-boolean-primitive-array": "^1.0.0",
     "validate.io-integer": "^1.0.5",
+    "validate.io-integer-array": "^1.0.0",
     "validate.io-logical-array": "^1.0.0",
     "validate.io-nonnegative-integer": "^1.0.0",
     "validate.io-object": "^1.0.3",

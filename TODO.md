@@ -14,12 +14,10 @@ TODO
 	-	do we want to include min and max options???
 2. get method
 	-	fancy indexing
-		-	regexp (reget)
 		-	logical	(lget)
 		-	boolean (bget)
 		-	array of indices (mget)
 		-	sequence (sget)
-		-	single index (iget)
 		-	general get which tries to deduce
 3. set method
 	-	fancy indexing (ability to provide clbk!!!)
