@@ -78,14 +78,14 @@ val = arr.map( function map( val, i ) {
 console.log( val.toString() );
 // returns 'f,ee,ddd,cccc,bbbbb'
 
-val = arr.reduce( function reduce( prev, curr ) {
-	return prev + '-|-' + curr;
+val = arr.reduce( function reduce( acc, curr ) {
+	return acc + '-|-' + curr;
 });
 console.log( val );
 // returns 'f-|-e-|-d-|-c-|-b'
 
-val = arr.reduceRight( function reduce( prev, curr ) {
-	return prev + '-|-' + curr;
+val = arr.reduceRight( function reduce( acc, curr ) {
+	return acc + '-|-' + curr;
 });
 console.log( val );
 // returns 'b-|-c-|-d-|-e-|-f'

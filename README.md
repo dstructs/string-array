@@ -636,7 +636,7 @@ __Notes__:
 <a name="map"></a>
 ##### [StringArray.prototype.map( clbk[, thisArg] )](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 
-Applies a `function` to each `StringArray` element and maps the result of each invocation to an element in a new `StringArray`. The condition `clbk` is provided the following arguments:
+Applies a `function` to each `StringArray` element and maps the result of each invocation to an element in a new `StringArray`. The `clbk` is provided the following arguments:
 *	__value__: current element
 *	__index__: current element index
 *	__arr__: `StringArray` instance
@@ -658,6 +658,57 @@ __Notes__:
 *	the map `function` should return only `string` primitives. A `non-string` primitive result will throw an `Error`.
 *	do __not__ use this as a __general__ method. Instead, use `Array.prototype.map.call()` when wanting to apply to non-`StringArray` objects.
 *	returns a new `StringArray` instance having __no__ length constraints.
+
+
+
+
+<a name="reduce"></a>
+##### [StringArray.prototype.reduce( clbk[, initialValue] )](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce)
+
+Executes a `function` against an accumulator and each `StringArray` element to return a single value. The `clbk` is provided the following arguments:
+*	__acc__: previous reduce result
+*	__curr__: current element
+*	__index__: current element index
+*	__arr__: `StringArray` instance
+
+To specify an initial value, provide a second argument.
+
+``` javascript
+var arr = new StringArray();
+arr.push( 'a', 'b', 'c' );
+
+var result = arr.reduce( function reduce( acc, val, i, arr ) {
+	return val + val;
+});
+// returns 'aabbcc'
+```
+
+__Notes__: do __not__ use this as a __general__ method. Instead, use `Array.prototype.reduce.call()` when wanting to apply to non-`StringArray` objects.
+
+
+
+<a name="reduceRight"></a>
+##### [StringArray.prototype.reduceRight( clbk[, initialValue] )](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceRight)
+
+Executes a `function` against an accumulator and each `StringArray` element to return a single value. The order in which elements are processed proceeds from the end of the `StringArray` to the start of the `StringArray`.The `clbk` is provided the following arguments:
+*	__acc__: previous reduce result
+*	__curr__: current element
+*	__index__: current element index
+*	__arr__: `StringArray` instance
+
+To specify an initial value, provide a second argument.
+
+``` javascript
+var arr = new StringArray();
+arr.push( 'a', 'b', 'c' );
+
+var result = arr.reduceRight( function reduce( acc, val, i, arr ) {
+	return val + val;
+});
+// returns 'ccbbaa'
+```
+
+__Notes__: do __not__ use this as a __general__ method. Instead, use `Array.prototype.reduceRight.call()` when wanting to apply to non-`StringArray` objects.
 
 
 ===
@@ -738,13 +789,13 @@ val = arr.map( function map( val, i ) {
 val.toString();
 // returns 'f,ee,ddd,cccc,bbbbb'
 
-val = arr.reduce( function reduce( prev, curr ) {
-	return prev + '-|-' + curr;
+val = arr.reduce( function reduce( acc, curr ) {
+	return acc + '-|-' + curr;
 });
 // returns 'f-|-e-|-d-|-c-|-b'
 
-val = arr.reduceRight( function reduce( prev, curr ) {
-	return prev + '-|-' + curr;
+val = arr.reduceRight( function reduce( acc, curr ) {
+	return acc + '-|-' + curr;
 });
 // returns 'b-|-c-|-d-|-e-|-f'
 ```
