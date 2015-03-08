@@ -26,7 +26,7 @@ describe( 'StringArray#concat', function tests() {
 		arr = new StringArray();
 	});
 
-	it( 'should provide a concat a function', function test() {
+	it( 'should provide a concat function', function test() {
 		expect( arr.concat ).to.be.a( 'function' );
 	});
 
