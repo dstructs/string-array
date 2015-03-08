@@ -61,3 +61,31 @@ bool = arr.some( function some( val ) {
 });
 console.log( bool );
 // returns true
+
+val = arr.filter( function filter( val ) {
+	return 'f' > val && val > 'b';
+});
+console.log( val.toString() );
+// returns 'e,d,c'
+
+val = arr.map( function map( val, i ) {
+	var str = val;
+	for ( var j = 0; j < i; j++ ) {
+		val += str;
+	}
+	return val;
+});
+console.log( val.toString() );
+// returns 'f,ee,ddd,cccc,bbbbb'
+
+val = arr.reduce( function reduce( prev, curr ) {
+	return prev + '-|-' + curr;
+});
+console.log( val );
+// returns 'f-|-e-|-d-|-c-|-b'
+
+val = arr.reduceRight( function reduce( prev, curr ) {
+	return prev + '-|-' + curr;
+});
+console.log( val );
+// returns 'b-|-c-|-d-|-e-|-f'

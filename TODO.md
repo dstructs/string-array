@@ -27,4 +27,4 @@ TODO
 		-	array of indices
 		-	sequence
 		-	single index
-4. add get, set, filter, map, reduce examples
+4. add get, set examples

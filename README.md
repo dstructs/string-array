@@ -717,11 +717,36 @@ bool = arr.every( function every( val, i ) {
 });
 // returns true
 
-
 bool = arr.some( function some( val, i ) {
 	return ( val >= 'c' );
 });
 // returns true
+
+val = arr.filter( function filter( val ) {
+	return 'f' > val && val > 'b';
+});
+val.toString();
+// returns 'e,d,c'
+
+val = arr.map( function map( val, i ) {
+	var str = val;
+	for ( var j = 0; j < i; j++ ) {
+		val += str;
+	}
+	return val;
+});
+val.toString();
+// returns 'f,ee,ddd,cccc,bbbbb'
+
+val = arr.reduce( function reduce( prev, curr ) {
+	return prev + '-|-' + curr;
+});
+// returns 'f-|-e-|-d-|-c-|-b'
+
+val = arr.reduceRight( function reduce( prev, curr ) {
+	return prev + '-|-' + curr;
+});
+// returns 'b-|-c-|-d-|-e-|-f'
 ```
 
 To run the example code from the top-level application directory,
