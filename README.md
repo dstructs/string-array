@@ -678,7 +678,7 @@ var arr = new StringArray();
 arr.push( 'a', 'b', 'c' );
 
 var result = arr.reduce( function reduce( acc, val, i, arr ) {
-	return val + val;
+	return acc + val + val;
 });
 // returns 'aabbcc'
 ```
@@ -703,7 +703,7 @@ var arr = new StringArray();
 arr.push( 'a', 'b', 'c' );
 
 var result = arr.reduceRight( function reduce( acc, val, i, arr ) {
-	return val + val;
+	return acc + val + val;
 });
 // returns 'ccbbaa'
 ```
