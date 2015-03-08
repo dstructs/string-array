@@ -231,4 +231,31 @@ describe( 'string-array', function tests() {
 		assert.strictEqual( arr.length, 10 );
 	});
 
+	it( 'should allowed min/max string lengths to be specified at instantation', function test() {
+		var arr = new StringArray({
+			'min': 5,
+			'max': 15
+		});
+		assert.strictEqual( arr.minLength, 5 );
+		assert.strictEqual( arr.maxLength, 15 );
+	});
+
+	it( 'should set the min string length', function test() {
+		var arr = new StringArray();
+		arr.minLength = 5;
+		assert.strictEqual( arr.minLength, 5 );
+	});
+
+	it( 'should set the max string length', function test() {
+		var arr = new StringArray();
+		arr.maxLength = 15;
+		assert.strictEqual( arr.maxLength, 15 );
+	});
+
+	it( 'should set the string array length', function test() {
+		var arr = new StringArray();
+		arr.length = 20;
+		assert.strictEqual( arr.length, 20 );
+	});
+
 });
