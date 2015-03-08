@@ -14,17 +14,25 @@ TODO
 	-	do we want to include min and max options???
 2. get method
 	-	fancy indexing
-		-	regexp
-		-	logical
-		-	boolean
-		-	array of indices
-		-	sequence
-		-	single index
+		-	regexp (reget)
+		-	logical	(lget)
+		-	boolean (bget)
+		-	array of indices (mget)
+		-	sequence (sget)
+		-	single index (iget)
+		-	general get which tries to deduce
 3. set method
-	-	fancy indexing
-		-	logical
-		-	boolean
-		-	array of indices
-		-	sequence
-		-	single index
+	-	fancy indexing (ability to provide clbk!!!)
+		-	regexp (reset)
+			-	only single value or clbk
+		-	logical (lset)
+			-	matching array.length or single value or clbk
+		-	boolean (bset)
+			-	dido
+		-	array of indices (mset)
+			-	dido
+		-	sequence (sset)
+			-	dido
+		-	single index (iset)
+		-	general set which tries to deduce
 4. add get, set examples
