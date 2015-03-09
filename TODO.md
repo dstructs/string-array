@@ -18,8 +18,6 @@ TODO
 		-	general get which tries to deduce
 3. set method
 	-	fancy indexing
-		-	regexp (reset)
-			-	only single value or clbk
 		-	logical (lset)
 			-	matching array.length or single value or clbk
 				-	tricky, as matching length means equal to logical array sum!!!
