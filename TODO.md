@@ -18,14 +18,7 @@ TODO
 		-	general get which tries to deduce
 3. set method
 	-	fancy indexing
-		-	logical (lset)
-			-	matching array.length or single value or clbk
-				-	tricky, as matching length means equal to logical array sum!!!
-				-	no, just require that array length be equal to logical array length; falsey elements will simply be ignored
-		-	boolean (bset)
-			-	dido
 		-	sequence (sset)
-			-	dido
 		-	general set which tries to deduce
 4. add get, set examples
 5. fixedLength/extensible/fixed property

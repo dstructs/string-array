@@ -110,6 +110,27 @@ console.log( val.toString() );
 // returns 'f,d,c'
 
 
-
 // SET //
+
+arr.iset( 1, 'eep' );
+console.log( arr.toString() );
+// returns 'f,eep,d,c,b'
+
+arr.mset( [0,2], ['foo','bar'] );
+console.log( arr.toString() );
+// returns 'foo,eep,bar,c,b'
+
+arr.bset( [false,false,false,true,true], function set( d ) {
+	return d + d;
+});
+console.log( arr.toString() );
+// returns 'foo,eep,bar,cc,bb'
+
+arr.lset( [1,1,1], function set( d ) {
+	return '~' + d + '~';
+});
+console.log( arr.toString() );
+// returns ~foo~,~eep~,~bar~,cc,bb'
+
+
 

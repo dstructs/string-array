@@ -1369,6 +1369,9 @@ val = arr.reduceRight( function reduce( acc, curr ) {
 });
 // returns 'b-|-c-|-d-|-e-|-f'
 
+
+// GET //
+
 val = arr.iget( 1 );
 // returns 'e'
 
@@ -1383,6 +1386,29 @@ val.toString();
 val = arr.lget( [1,0,1,1,0] );
 val.toString();
 // returns 'f,d,c'
+
+
+// SET //
+
+arr.iset( 1, 'eep' );
+arr.toString();
+// returns 'f,eep,d,c,b'
+
+arr.mset( [0,2], ['foo','bar'] );
+arr.toString();
+// returns 'foo,eep,bar,c,b'
+
+arr.bset( [false,false,false,true,true], function set( d ) {
+	return d + d;
+});
+arr.toString();
+// returns 'foo,eep,bar,cc,bb'
+
+arr.lset( [1,1,1], function set( d ) {
+	return '~' + d + '~';
+});
+arr.toString();
+// returns ~foo~,~eep~,~bar~,cc,bb'
 ```
 
 To run the example code from the top-level application directory,
