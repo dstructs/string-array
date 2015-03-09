@@ -341,7 +341,7 @@ arr2.toString();
 <a name="lget"></a>
 ##### StringArray.prototype.lget( arr )
 
-Returns values where the input `array` is equal to `1` in a new `StringArray`. If all elements in the input [`logical array`](https://github.com/validate-io/logical-array) are `false`, the method returns `null`.
+Returns values where the input `array` is equal to `1` in a new `StringArray`. If all elements in the input [`logical array`](https://github.com/validate-io/logical-array) are `0`, the method returns `null`.
 
 ``` javascript
 var arr1 = new StringArray(),
