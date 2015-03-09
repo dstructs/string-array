@@ -268,6 +268,14 @@ arr2.toString();
 
 
 
+<a name="sget"></a>
+##### StringArray.prototype.sget( sequence )
+
+TODO.
+
+
+
+
 
 <a name="reget"></a>
 ##### StringArray.prototype.reget( re )
@@ -286,6 +294,84 @@ arr2.toString();
 
 arr2 = arr.reget( /^w.*t$/ );
 // returns null
+```
+
+
+
+
+
+<a name="bget"></a>
+##### StringArray.prototype.bget( arr )
+
+Returns values where the input `array` is equal to `true` in a new `StringArray`. If all elements in the input `boolean array` are `false`, the method returns `null`.
+
+``` javascript
+var arr1 = new StringArray(),
+	arr2;
+
+arr1.push( 'a', 'beep', 'boop', 'c' );
+
+arr2 = arr1.bget( [true,false,true,false] );
+arr2.toString();
+// returns 'a,boop'
+
+arr2 = arr.bget( [false,false,false,false] );
+// returns null
+```
+
+The input `boolean array` is __not__ required to have the same length as the `StringArray`. If the `boolean array` is shorter than the `StringArray`, only the first `N` elements are considered, where `N` is the input `array` length. If the input `array` length is greater than the `StringArray` length, only the first `N` elements are considered, where `N` is the `StringArray` length.
+
+``` javascript
+var arr1 = new StringArray(),
+	arr2;
+
+arr1.push( 'a', 'beep', 'boop', 'd' );
+
+arr2 = arr1.bget( [false,true,true] );
+arr2.toString();
+// returns 'beep,boop'
+
+arr2 = arr1.bget( [false,true,false,false,true,true] );
+arr2.toString();
+// returns 'beep'
+```
+
+
+
+<a name="lget"></a>
+##### StringArray.prototype.lget( arr )
+
+Returns values where the input `array` is equal to `1` in a new `StringArray`. If all elements in the input [`logical array`](validate.io-logical-array) are `false`, the method returns `null`.
+
+``` javascript
+var arr1 = new StringArray(),
+	arr2;
+
+arr1.push( 'a', 'beep', 'boop', 'c' );
+
+arr2 = arr1.lget( [1,0,1,0] );
+arr2.toString();
+// returns 'a,boop'
+
+arr2 = arr.lget( [0,0,0,0] );
+// returns null
+```
+
+The input `logical array` is __not__ required to have the same length as the `StringArray`. If the `logical array` is shorter than the `StringArray`, only the first `N` elements are considered, where `N` is the input `array` length. If the input `array` length is greater than the `StringArray` length, only the first `N` elements are considered, where `N` is the `StringArray` length.
+
+``` javascript
+var arr1 = new StringArray(),
+	arr2;
+
+arr1.push( 'a', 'beep', 'boop', 'd' );
+
+arr2 = arr1.lget( [0,1,1] );
+arr2.toString();
+// returns 'beep,boop'
+
+arr2 = arr1.lget( [0,1,0,0,1,1] );
+arr2.toString();
+// returns 'beep'
 ```
 
 
