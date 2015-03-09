@@ -271,7 +271,44 @@ arr2.toString();
 <a name="sget"></a>
 ##### StringArray.prototype.sget( sequence )
 
-TODO.
+Returns values in a new `StringArray` according to a specified [`sequence`](https://github.com/compute-io/indexspace). If no `sequence` indices correspond to `StringArray` elements, the method returns `null`.
+
+``` javascript
+var arr1 = new StringArray(),
+	arr2;
+
+arr1.push( 'a', 'b', 'c', 'd', 'e', 'f' );
+
+arr2 = arr1.sget( ':' );
+arr2.toString();
+// returns 'a,b,c,d,e,f'
+
+arr2 = arr1.sget( '2:' );
+arr2.toString();
+// returns 'c,d,e,f'
+
+arr2 = arr1.sget( '2:4' );
+arr2.toString();
+// returns 'c,d'
+
+arr2 = arr1.sget( '2:-1' );
+arr2.toString();
+// returns 'c,d,e'
+
+arr2 = arr1.sget( '2:end-1' );
+arr2.toString();
+// returns 'c,d,e'
+
+arr2 = arr1.sget( '::2' );
+arr2.toString();
+// returns 'a,c,e'
+
+arr2 = arr1.sget( '5::-1' );
+arr2.toString();
+// returns 'f,e,d,c,b,a'
+```
+
+For further documentation of sequence syntax, see [compute-indexspace](https://github.com/compute-io/indexspace).
 
 
 
