@@ -26,6 +26,14 @@ Why not just use native `Arrays`? A `StringArray`
 		*	[reget](#reget)
 		*	[bget](#bget)
 		*	[lget](#lget)
+	-	[Set Methods](#set-methods)
+		*	[set](#set)
+		*	[iset](#iset)
+		*	[mset](#mset)
+		*	[sset](#sset)
+		*	[reset](#reset)
+		*	[bset](#bset)
+		*	[lset](#lset)
 	-	[Mutator Methods](#mutator-methods)
 		*	[push()](#push)
 		*	[pop()](#pop)
@@ -413,6 +421,107 @@ arr2 = arr1.lget( [0,1,0,0,1,1] );
 arr2.toString();
 // returns 'beep'
 ```
+
+
+
+===
+#### Set Methods
+
+<a name="set"></a>
+##### StringArray.prototype.set()
+
+TODO
+
+
+
+<a name="iset"></a>
+##### StringArray.prototype.iset( idx, val )
+
+Sets a `StringArray` value located at a specified index. `val` may be either a `string` primitive or a callback `function`. The callback is provided two arguments:
+*	__value__: value at the specified index.
+*	__idx__: specified index.
+
+
+The callback is __expected__ to return a `string` primitive; otherwise, the method throws a `TypeError`. The callback `this` context is, by default, set to the `StringArray` instance. To override the `this` context, use [`bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
+
+``` javascript
+var arr = new StringArray();
+
+arr.push( 'a', 'b', 'c' );
+
+arr.set( 1, 'beep' );
+arr.toString();
+// returns 'a,beep,c'
+
+arr.set( 1, function set( d, i ) {
+	console.log( this.toString() );
+	// returns 'a,beep,c'
+	return d.replace( /e/g, 'o' );
+});
+arr.toString();
+// returns 'a,boop,c'
+
+arr.set( 4, 'e' );
+arr.toString();
+// returns 'a,boop,c,,e'
+```
+
+Negative indices are allowed, as long as they resolve to a nonnegative index; e.g., `len - |idx| >= 0`. If not, the method throws a `RangeError`.
+
+``` javascript
+arr.set( -4, 'beep' );
+arr.toString();
+// returns 'a,beep,c,,e'
+```
+
+
+
+
+
+<a name="mset"></a>
+##### StringArray.prototype.mset( idx, val )
+
+TODO
+
+
+
+
+
+<a name="sset"></a>
+##### StringArray.prototype.sset( idx, val )
+
+TODO
+
+
+
+
+<a name="reset"></a>
+##### StringArray.prototype.reset( idx, val )
+
+TODO
+
+
+
+
+
+<a name="bset"></a>
+##### StringArray.prototype.bset( idx, val )
+
+TODO
+
+
+
+
+
+<a name="lset"></a>
+##### StringArray.prototype.lset( idx, val )
+
+TODO
+
+
+
+
+
 
 
 

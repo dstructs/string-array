@@ -90,6 +90,9 @@ val = arr.reduceRight( function reduce( acc, curr ) {
 console.log( val );
 // returns 'b-|-c-|-d-|-e-|-f'
 
+
+// GET //
+
 val = arr.iget( 1 );
 console.log( val );
 // returns 'e'
@@ -105,3 +108,8 @@ console.log( val.toString() );
 val = arr.lget( [1,0,1,1,0] );
 console.log( val.toString() );
 // returns 'f,d,c'
+
+
+
+// SET //
+

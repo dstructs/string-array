@@ -17,7 +17,7 @@ TODO
 		-	sequence (sget)
 		-	general get which tries to deduce
 3. set method
-	-	fancy indexing (ability to provide clbk!!!)
+	-	fancy indexing (ability to provide clbk!!! --> one requirement: must return a string satisfying constraints --> will need to create a temporary array so that setting is atomic)
 		-	regexp (reset)
 			-	only single value or clbk
 		-	logical (lset)

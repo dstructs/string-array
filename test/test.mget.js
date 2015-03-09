@@ -119,7 +119,7 @@ describe( 'StringArray#mget', function tests() {
 
 		arr.push( 'a', 'beep', 'c', 'boop' );
 
-		arr2 = arr.mget( [30,40,50] );
+		arr2 = arr.mget( [30,40,50,-30] );
 		assert.isNull( arr2 );
 	});
 
