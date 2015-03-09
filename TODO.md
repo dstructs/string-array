@@ -14,8 +14,6 @@ TODO
 	-	do we want to include min and max options???
 2. get method
 	-	fancy indexing
-		-	logical	(lget)
-		-	boolean (bget)
 		-	sequence (sget)
 		-	general get which tries to deduce
 3. set method
