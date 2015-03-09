@@ -16,7 +16,6 @@ TODO
 	-	fancy indexing
 		-	logical	(lget)
 		-	boolean (bget)
-		-	array of indices (mget)
 		-	sequence (sget)
 		-	general get which tries to deduce
 3. set method

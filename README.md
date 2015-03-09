@@ -191,6 +191,106 @@ arr.push( 'beep' );
 __Note__: setting the `maxLength` after elements have been added to the `array` does __not__ affect the existing elements; the setting only applies to future `strings` added to the `array`.
 
 
+
+===
+#### Get Methods
+
+<a name="get"></a>
+##### StringArray.prototype.get()
+
+TODO.
+
+
+
+<a name="iget"></a>
+##### StringArray.prototype.iget( idx )
+
+Returns a `StringArray` value located at a specific index. If `idx < 0`, the index refers to a position relative to the `StringArray` end, where `idx = -1` corresponds to the last element. If the input `idx` does not correspond to any element, the method returns `undefined`.
+
+``` javascript
+var arr = new StringArray(),
+	val;
+
+arr.push( 'a', 'b', 'c', 'd' );
+
+val = arr.iget( 2 );
+// returns 'c'
+
+val = arr.iget( -3 );
+// returns 'b'
+
+val = arr.iget( 10 );
+// returns undefined
+```
+
+
+<a name="mget"></a>
+##### StringArray.prototype.mget( idx[, options] )
+
+Returns values located at specified indices in a new `StringArray`. If an index is `< 0`, the index refers to a position relative to the `StringArray` end.
+
+``` javascript
+var arr1 = new StringArray(),
+	arr2;
+
+arr1.push( 'a', 'b', 'c', 'd' );
+
+arr2 = arr1.mget( [2,3] );
+arr2.toString();
+// returns 'c,d'
+
+arr2 = arr1.mget( [-3,-4] );
+arr2.toString();
+// returns 'a,b'
+
+arr2 = arr1.mget( [10,11,12] );
+// returns null
+```
+
+If an index exceeds `array` dimensions, the index is ignored. If provided an empty index `array` __or__ no indices correspond to `StringArray` values, the method returns `null`.
+
+By default, duplicate indices are ignored and results are ordered by ascending index. To allow duplicate indices and to turn off sorting, set the `dedupe` option to `false`.
+
+``` javascript
+var arr1 = new StringArray(),
+	arr2;
+
+arr1.push( 'a', 'b', 'c', 'd' );
+
+arr2 = arr1.mget( [2,2,1,1,1,1] );
+arr2.toString();
+// returns 'b,c'
+
+arr2 = arr1.mget( [2,2,1,1,1,1], {'dedupe':false} );
+arr2.toString();
+// returns 'c,c,b,b,b,b'
+```
+
+
+
+
+<a name="reget"></a>
+##### StringArray.prototype.reget( re )
+
+Returns values satisfying a regular expression in a new `StringArray`. If no values satisfy the regular expression, the method returns `null`.
+
+``` javascript
+var arr1 = new StringArray(),
+	arr2;
+
+arr1.push( 'a', 'beep', 'boop', 'c' );
+
+arr2 = arr1.reget( /^b.*p$/ );
+arr2.toString();
+// returns 'beep,boop'
+
+arr2 = arr.reget( /^w.*t$/ );
+// returns null
+```
+
+
+
+
 ===
 #### Mutator Methods
 
