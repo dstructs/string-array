@@ -481,7 +481,6 @@ __Note__: an input `string` must abide by `StringArray` length constraints. If a
 <a name="mset"></a>
 ##### StringArray.prototype.mset( idx, val )
 
-
 Sets `StringArray` values located at a specified indices. `val` may be either a single `string` primitive, a `string` primitive `array` of equal length, or a callback `function`. The callback is provided two arguments:
 *	__value__: value at the specified index.
 *	__idx__: specified index.
@@ -498,7 +497,7 @@ arr.mset( [0,1], 'beep' );
 arr.toString();
 // returns 'beep,beep,c'
 
-arr.mset( [0,1[, function set( d, i ) {
+arr.mset( [0,1], function set( d, i ) {
 	console.log( this.toString() );
 	// returns 'a,beep,c'
 	return d.replace( /e/g, 'o' );
@@ -596,20 +595,156 @@ __Note__: an input `string` must abide by `StringArray` length constraints. If a
 <a name="bset"></a>
 ##### StringArray.prototype.bset( idx, val )
 
-TODO
+Sets `StringArray` values where an input `boolean array` is `true`. `val` may be either a single `string` primitive, a `string` primitive `array` of equal length, or a callback `function`. The callback is provided two arguments:
+*	__value__: value at the specified index.
+*	__idx__: specified index.
 
 
+The callback is __expected__ to return a `string` primitive; otherwise, the method throws a `TypeError`. The callback `this` context is, by default, set to the `StringArray` instance. To override the `this` context, use [`bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
+
+``` javascript
+var arr = new StringArray();
+
+arr.push( 'a', 'b', 'c' );
+
+arr.bset( [true,false,true], 'beep' );
+arr.toString();
+// returns 'beep,b,beep'
+
+arr.bset( [true,false,true], function set( d, i ) {
+	console.log( this.toString() );
+	// returns 'beep,b,beep'
+	return d.replace( /e/g, 'o' );
+});
+arr.toString();
+// returns 'boop,b,boop'
+
+arr.bset( [true,false,true], ['d','e','f'] );
+arr.toString();
+// returns 'd,b,f'
+```
+
+The input `boolean array` is __not__ required to have the same length as the `StringArray`. If the `boolean array` is shorter than the `StringArray`, only the first `N` elements are considered, where `N` is the input `array` length. If the input `array` length is greater than the `StringArray` length, each `array` element equal to `true` extends the `StringArray`.
+
+``` javascript
+arr.bset( [false,false,false,false,true,false,true], 'woot' );
+arr.toString();
+// returns 'd,b,f,,woot,,woot'
+
+arr.bset( [true,true], ['beep','boop'] );
+arr.toString();
+// returns 'beep,boop,f,,woot,,woot'
+```
+
+
+__Notes__:
+*	all `strings` must abide by `StringArray` length constraints. If a `string` does not conform, the method throws a `RangeError`.
+
+	``` javascript
+	var arr = new StringArray();
+
+	arr.push( 'd', 'b', 'f' );
+	arr.minLength = 1;
+	arr.maxLength = 1;
+
+	arr.bset( [true,true,true], ['a','e','woot'] );
+	// throws RangeError
+
+	arr.toString();
+	// returns 'd,b,f'
+	```
+
+*	setting multiple `StringArray` values is __atomic__. If setting one value fails (e.g., `TypeError`), all values fail to be set.
+
+	``` javascript
+	arr.bset( [true,true,true], function set( d, i ) {
+		if ( i === 2 ) {
+			return 5;
+		}
+	});
+	// throws TypeError
+	
+	arr.toString();
+	// returns 'd,b,f'
+	```
 
 
 
 <a name="lset"></a>
 ##### StringArray.prototype.lset( idx, val )
 
-TODO
+Sets `StringArray` values where an input [`logical array`](https://github.com/validate-io/logical-array) is `1`. `val` may be either a single `string` primitive, a `string` primitive `array` of equal length, or a callback `function`. The callback is provided two arguments:
+*	__value__: value at the specified index.
+*	__idx__: specified index.
 
 
+The callback is __expected__ to return a `string` primitive; otherwise, the method throws a `TypeError`. The callback `this` context is, by default, set to the `StringArray` instance. To override the `this` context, use [`bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
+
+``` javascript
+var arr = new StringArray();
+
+arr.push( 'a', 'b', 'c' );
+
+arr.lset( [1,0,1], 'beep' );
+arr.toString();
+// returns 'beep,b,beep'
+
+arr.lset( [1,0,1], function set( d, i ) {
+	console.log( this.toString() );
+	// returns 'beep,b,beep'
+	return d.replace( /e/g, 'o' );
+});
+arr.toString();
+// returns 'boop,b,boop'
+
+arr.lset( [1,0,1], ['d','e','f'] );
+arr.toString();
+// returns 'd,b,f'
+```
+
+The input `logical array` is __not__ required to have the same length as the `StringArray`. If the `logical array` is shorter than the `StringArray`, only the first `N` elements are considered, where `N` is the input `array` length. If the input `array` length is greater than the `StringArray` length, each `array` element equal to `1` extends the `StringArray`.
+
+``` javascript
+arr.lset( [0,0,0,0,1,0,1], 'woot' );
+arr.toString();
+// returns 'd,b,f,,woot,,woot'
+
+arr.lset( [1,1], ['beep','boop'] );
+arr.toString();
+// returns 'beep,boop,f,,woot,,woot'
+```
 
 
+__Notes__:
+*	all `strings` must abide by `StringArray` length constraints. If a `string` does not conform, the method throws a `RangeError`.
+
+	``` javascript
+	var arr = new StringArray();
+
+	arr.push( 'd', 'b', 'f' );
+	arr.minLength = 1;
+	arr.maxLength = 1;
+
+	arr.lset( [1,1,1], ['a','e','woot'] );
+	// throws RangeError
+
+	arr.toString();
+	// returns 'd,b,f'
+	```
+
+*	setting multiple `StringArray` values is __atomic__. If setting one value fails (e.g., `TypeError`), all values fail to be set.
+
+	``` javascript
+	arr.lset( [1,1,1], function set( d, i ) {
+		if ( i === 2 ) {
+			return 5;
+		}
+	});
+	// throws TypeError
+	
+	arr.toString();
+	// returns 'd,b,f'
+	```
 
 
 

@@ -21,6 +21,7 @@ TODO
 		-	logical (lset)
 			-	matching array.length or single value or clbk
 				-	tricky, as matching length means equal to logical array sum!!!
+				-	no, just require that array length be equal to logical array length; falsey elements will simply be ignored
 		-	boolean (bset)
 			-	dido
 		-	sequence (sset)
