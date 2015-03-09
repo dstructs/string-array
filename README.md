@@ -499,7 +499,7 @@ arr.toString();
 
 arr.mset( [0,1], function set( d, i ) {
 	console.log( this.toString() );
-	// returns 'a,beep,c'
+	// returns 'beep,beep,c'
 	return d.replace( /e/g, 'o' );
 });
 arr.toString();
@@ -539,6 +539,7 @@ __Notes__:
 		if ( i === 2 ) {
 			return 5;
 		}
+		return d;
 	});
 	// throws TypeError
 	
@@ -661,6 +662,7 @@ __Notes__:
 		if ( i === 2 ) {
 			return 5;
 		}
+		return d;
 	});
 	// throws TypeError
 	
@@ -739,6 +741,7 @@ __Notes__:
 		if ( i === 2 ) {
 			return 5;
 		}
+		return d;
 	});
 	// throws TypeError
 	
