@@ -562,8 +562,8 @@ TODO
 ##### StringArray.prototype.reset( re, val )
 
 Sets `StringArray` elements whose values satisfy a regular expression. `val` may be either a `string` primitive or a callback `function`. The callback is provided two arguments:
-*	__value__: value at the specified index.
-*	__idx__: specified index.
+*	__value__: value satisfying regular expression.
+*	__idx__: value index.
 
 
 The callback is __expected__ to return a `string` primitive; otherwise, the method throws a `TypeError`. The callback `this` context is, by default, set to the `StringArray` instance. To override the `this` context, use [`bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
@@ -597,8 +597,8 @@ __Note__: an input `string` must abide by `StringArray` length constraints. If a
 ##### StringArray.prototype.bset( idx, val )
 
 Sets `StringArray` values where an input `boolean array` is `true`. `val` may be either a single `string` primitive, a `string` primitive `array` of equal length, or a callback `function`. The callback is provided two arguments:
-*	__value__: value at the specified index.
-*	__idx__: specified index.
+*	__value__: value where input `array` is `true`.
+*	__idx__: value index.
 
 
 The callback is __expected__ to return a `string` primitive; otherwise, the method throws a `TypeError`. The callback `this` context is, by default, set to the `StringArray` instance. To override the `this` context, use [`bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
@@ -676,8 +676,8 @@ __Notes__:
 ##### StringArray.prototype.lset( idx, val )
 
 Sets `StringArray` values where an input [`logical array`](https://github.com/validate-io/logical-array) is `1`. `val` may be either a single `string` primitive, a `string` primitive `array` of equal length, or a callback `function`. The callback is provided two arguments:
-*	__value__: value at the specified index.
-*	__idx__: specified index.
+*	__value__: value where input `array` is `1`.
+*	__idx__: value index.
 
 
 The callback is __expected__ to return a `string` primitive; otherwise, the method throws a `TypeError`. The callback `this` context is, by default, set to the `StringArray` instance. To override the `this` context, use [`bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
