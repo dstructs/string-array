@@ -89,3 +89,19 @@ val = arr.reduceRight( function reduce( acc, curr ) {
 });
 console.log( val );
 // returns 'b-|-c-|-d-|-e-|-f'
+
+val = arr.iget( 1 );
+console.log( val );
+// returns 'e'
+
+val = arr.mget( [1,3] );
+console.log( val.toString() );
+// returns 'e,c'
+
+val = arr.bget( [true,false,true,true,false] );
+console.log( val.toString() );
+// returns 'f,d,c'
+
+val = arr.lget( [1,0,1,1,0] );
+console.log( val.toString() );
+// returns 'f,d,c'

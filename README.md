@@ -1032,6 +1032,21 @@ val = arr.reduceRight( function reduce( acc, curr ) {
 	return acc + '-|-' + curr;
 });
 // returns 'b-|-c-|-d-|-e-|-f'
+
+val = arr.iget( 1 );
+// returns 'e'
+
+val = arr.mget( [1,3] );
+val.toString();
+// returns 'e,c'
+
+val = arr.bget( [true,false,true,true,false] );
+val.toString();
+// returns 'f,d,c'
+
+val = arr.lget( [1,0,1,1,0] );
+val.toString();
+// returns 'f,d,c'
 ```
 
 To run the example code from the top-level application directory,
