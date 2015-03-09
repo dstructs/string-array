@@ -206,7 +206,7 @@ __Note__: setting the `maxLength` after elements have been added to the `array` 
 <a name="get"></a>
 ##### StringArray.prototype.get()
 
-TODO.
+TBD.
 
 
 
@@ -430,7 +430,7 @@ arr2.toString();
 <a name="set"></a>
 ##### StringArray.prototype.set()
 
-TODO
+TBD.
 
 
 
@@ -474,7 +474,7 @@ arr.toString();
 // returns 'a,beep,c,,e'
 ```
 
-__Note__: the input `string` must abide by `StringArray` length constraints. If an input `string` does not conform, the method throws a `RangeError`.
+__Note__: an input `string` must abide by `StringArray` length constraints. If an input `string` does not conform, the method throws a `RangeError`.
 
 
 
@@ -559,9 +559,35 @@ TODO
 
 
 <a name="reset"></a>
-##### StringArray.prototype.reset( idx, val )
+##### StringArray.prototype.reset( re, val )
 
-TODO
+Sets `StringArray` elements whose values satisfy a regular expression. `val` may be either a `string` primitive or a callback `function`. The callback is provided two arguments:
+*	__value__: value at the specified index.
+*	__idx__: specified index.
+
+
+The callback is __expected__ to return a `string` primitive; otherwise, the method throws a `TypeError`. The callback `this` context is, by default, set to the `StringArray` instance. To override the `this` context, use [`bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
+
+``` javascript
+var arr = new StringArray();
+
+arr.push( 'a', 'beep', 'boop', 'c' );
+
+arr.reset( /^b.*p$/, 'woot' );
+arr.toString();
+// returns 'a,woot,woot,c'
+
+arr.reset( /^w.*/, function set( d, i ) {
+	console.log( this.toString() );
+	// returns 'a,woot,woot,c'
+	return d.replace( /o{2}t$/, 'eep' );
+});
+arr.toString();
+// returns 'a,weep,weep,c'
+```
+
+__Note__: an input `string` must abide by `StringArray` length constraints. If an input `string` does not conform, the method throws a `RangeError`.
+
 
 
 
