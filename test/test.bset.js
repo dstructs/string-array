@@ -18,7 +18,7 @@ var expect = chai.expect,
 
 // TESTS //
 
-describe( 'StringArray#mset', function tests() {
+describe( 'StringArray#bset', function tests() {
 
 	var arr;
 
@@ -26,11 +26,11 @@ describe( 'StringArray#mset', function tests() {
 		arr = new StringArray();
 	});
 
-	it( 'should provide a set function which accepts an index array', function test() {
-		expect( arr.mset ).to.be.a( 'function' );
+	it( 'should provide a set function which accepts a boolean array', function test() {
+		expect( arr.bset ).to.be.a( 'function' );
 	});
 
-	it( 'should throw an error if not provided an integer array', function test() {
+	it( 'should throw an error if not provided a boolean array', function test() {
 		var values = [
 			'5',
 			5,
@@ -44,7 +44,8 @@ describe( 'StringArray#mset', function tests() {
 			[],
 			{},
 			function(){},
-			[1,2,null]
+			[1,2,null],
+			[true,true,null]
 		];
 
 		for ( var i = 0; i < values.length; i++ ) {
@@ -52,7 +53,7 @@ describe( 'StringArray#mset', function tests() {
 		}
 		function badValue( value ) {
 			return function() {
-				arr.mset( value, '' );
+				arr.bset( value, '' );
 			};
 		}
 	});
@@ -78,16 +79,8 @@ describe( 'StringArray#mset', function tests() {
 		}
 		function badValue( value ) {
 			return function() {
-				arr.mset( [0], value );
+				arr.bset( [true], value );
 			};
-		}
-	});
-
-	it( 'should throw an error if a negative index does not resolve to a positive index', function test() {
-		arr.push( 'a', 'b', 'c' );
-		expect( foo ).to.throw( RangeError );
-		function foo() {
-			arr.mset( [-10], 'beep' );
 		}
 	});
 
@@ -95,34 +88,55 @@ describe( 'StringArray#mset', function tests() {
 		arr.push( 'a', 'b', 'c' );
 		expect( foo ).to.throw( TypeError );
 		function foo() {
-			arr.mset( [0], function set() {
+			arr.bset( [true], function set() {
 				return 5;
 			});
 		}
 	});
 
-	it( 'should throw an error if an index array and a value array are not of equal lengths', function test() {
+	it( 'should throw an error if a boolean array and a value array are not of equal lengths', function test() {
 		arr.push( 'a', 'b', 'c' );
 		expect( foo ).to.throw( Error );
 		function foo() {
-			arr.mset( [0], ['a','b'] );
+			arr.bset( [true], ['a','b'] );
 		}
 	});
 
-	it( 'should set multiple elements', function test() {
+	it( 'should set elements', function test() {
 		arr.push( 'a', 'beep', 'c', 'boop' );
 
-		arr.mset( [1,3], 'woot' );
+		arr.bset( [false,true,false,true], 'woot' );
 		assert.strictEqual( arr.mget( [1,3] ).toString(), 'woot,woot' );
 
-		arr.mset( [-1,-3], ['woop','woop'] );
-		assert.strictEqual( arr.mget( [-1,-3] ).toString(), 'woop,woop' );
+		arr.bset( [false,true,false,true], ['f', 'woop','g', 'woop'] );
+		assert.strictEqual( arr.toString(), 'a,woop,c,woop' );
 
-		arr.mset( [-1,-3], function set( d ) {
+		arr.bset( [false,true,false,true], function set( d ) {
 			assert.ok( this === arr );
 			return d.replace( /o/g, 'e' );
 		});
-		assert.strictEqual( arr.mget( [-1,-3] ).toString(), 'weep,weep' );
+		assert.strictEqual( arr.toString(), 'a,weep,c,weep' );
+	});
+
+	it( 'should do nothing if no input array values are true', function test() {
+		arr.push( 'a', 'b', 'c' );
+
+		arr.bset( [false,false,false], 'woot' );
+		assert.strictEqual( arr.toString(), 'a,b,c' );
+	});
+
+	it( 'should allow for boolean arrays which are shorter than the StringArray length', function test() {
+		arr.push( 'a', 'b', 'c' );
+
+		arr.bset( [true,true], ['beep','boop' ] );
+		assert.strictEqual( arr.toString(), 'beep,boop,c' );
+	});
+
+	it( 'should allow for boolean arrays which are longer than the StringArray length', function test() {
+		arr.push( 'a', 'b', 'c' );
+
+		arr.bset( [true,true,false,true,true,false,true], 'woot' );
+		assert.strictEqual( arr.toString(), 'woot,woot,c,woot,woot,,woot' );
 	});
 
 	it( 'should throw an error if provided a string which does not conform to length constraints', function test() {
@@ -134,13 +148,13 @@ describe( 'StringArray#mset', function tests() {
 		expect( strarr ).to.throw( RangeError );
 		expect( clbk ).to.throw( RangeError );
 		function str() {
-			arr.mset( [1], 'beep' );
+			arr.bset( [true], 'beep' );
 		}
 		function strarr() {
-			arr.mset( [1], ['beep'] );
+			arr.bset( [true], ['beep'] );
 		}
 		function clbk() {
-			arr.mset( [1], function set(){
+			arr.bset( [true], function set(){
 				return 'beep';
 			});
 		}
