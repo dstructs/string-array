@@ -108,6 +108,7 @@ describe( 'StringArray#iset', function tests() {
 		assert.strictEqual( arr.iget( -1 ), 'woop' );
 
 		arr.iset( -1, function set( d ) {
+			assert.ok( this === arr );
 			return d.replace( /o/g, 'e' );
 		});
 		assert.strictEqual( arr.iget( -1 ), 'weep' );
