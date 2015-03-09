@@ -269,9 +269,9 @@ arr2.toString();
 
 
 <a name="sget"></a>
-##### StringArray.prototype.sget( sequence )
+##### StringArray.prototype.sget( subsequence )
 
-Returns values in a new `StringArray` according to a specified [`sequence`](https://github.com/compute-io/indexspace). If no `sequence` indices correspond to `StringArray` elements, the method returns `null`.
+Returns values in a new `StringArray` according to a specified [`subsequence`](https://github.com/compute-io/indexspace). If no `subsequence` indices correspond to `StringArray` elements, the method returns `null`.
 
 ``` javascript
 var arr1 = new StringArray(),
@@ -308,7 +308,7 @@ arr2.toString();
 // returns 'f,e,d,c,b,a'
 ```
 
-For further documentation of sequence syntax, see [compute-indexspace](https://github.com/compute-io/indexspace).
+For further subsequence documentation, see [compute-indexspace](https://github.com/compute-io/indexspace).
 
 
 
