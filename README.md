@@ -306,6 +306,9 @@ arr2.toString();
 arr2 = arr1.sget( '5::-1' );
 arr2.toString();
 // returns 'f,e,d,c,b,a'
+
+arr2 = arr1.sget( '20:' );
+// returns null
 ```
 
 For further subsequence documentation, see [compute-indexspace](https://github.com/compute-io/indexspace).
