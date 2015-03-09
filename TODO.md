@@ -28,6 +28,5 @@ TODO
 			-	dido
 		-	sequence (sset)
 			-	dido
-		-	single index (iset)
 		-	general set which tries to deduce
 4. add get, set examples

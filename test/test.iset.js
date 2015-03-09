@@ -88,7 +88,7 @@ describe( 'StringArray#iset', function tests() {
 		}
 	});
 
-	it( 'should throw an error if a callback does not return string primitive', function test() {
+	it( 'should throw an error if a callback does not return a string primitive', function test() {
 		arr.push( 'a', 'b', 'c' );
 		expect( foo ).to.throw( TypeError );
 		function foo() {
@@ -112,6 +112,16 @@ describe( 'StringArray#iset', function tests() {
 			return d.replace( /o/g, 'e' );
 		});
 		assert.strictEqual( arr.iget( -1 ), 'weep' );
+	});
+
+	it( 'should throw an error if provided a string which does not conform to length constraints', function test() {
+		arr.push( 'a', 'b', 'c' );
+		arr.minLength = 1;
+		arr.maxLength = 1;
+		expect( foo ).to.throw( RangeError );
+		function foo() {
+			arr.iset( 1, 'beep' );
+		}
 	});
 
 });

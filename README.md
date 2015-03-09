@@ -449,11 +449,11 @@ var arr = new StringArray();
 
 arr.push( 'a', 'b', 'c' );
 
-arr.set( 1, 'beep' );
+arr.iset( 1, 'beep' );
 arr.toString();
 // returns 'a,beep,c'
 
-arr.set( 1, function set( d, i ) {
+arr.iset( 1, function set( d, i ) {
 	console.log( this.toString() );
 	// returns 'a,beep,c'
 	return d.replace( /e/g, 'o' );
@@ -461,7 +461,7 @@ arr.set( 1, function set( d, i ) {
 arr.toString();
 // returns 'a,boop,c'
 
-arr.set( 4, 'e' );
+arr.iset( 4, 'e' );
 arr.toString();
 // returns 'a,boop,c,,e'
 ```
@@ -469,20 +469,83 @@ arr.toString();
 Negative indices are allowed, as long as they resolve to a nonnegative index; e.g., `len - |idx| >= 0`. If not, the method throws a `RangeError`.
 
 ``` javascript
-arr.set( -4, 'beep' );
+arr.iset( -4, 'beep' );
 arr.toString();
 // returns 'a,beep,c,,e'
 ```
 
-
+__Note__: the input `string` must abide by `StringArray` length constraints. If an input `string` does not conform, the method throws a `RangeError`.
 
 
 
 <a name="mset"></a>
 ##### StringArray.prototype.mset( idx, val )
 
-TODO
 
+Sets `StringArray` values located at a specified indices. `val` may be either a single `string` primitive, a `string` primitive `array` of equal length, or a callback `function`. The callback is provided two arguments:
+*	__value__: value at the specified index.
+*	__idx__: specified index.
+
+
+The callback is __expected__ to return a `string` primitive; otherwise, the method throws a `TypeError`. The callback `this` context is, by default, set to the `StringArray` instance. To override the `this` context, use [`bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
+
+``` javascript
+var arr = new StringArray();
+
+arr.push( 'a', 'b', 'c' );
+
+arr.mset( [0,1], 'beep' );
+arr.toString();
+// returns 'beep,beep,c'
+
+arr.mset( [0,1[, function set( d, i ) {
+	console.log( this.toString() );
+	// returns 'a,beep,c'
+	return d.replace( /e/g, 'o' );
+});
+arr.toString();
+// returns 'boop,boop,c'
+
+arr.mset( [3,4], ['d','e'] );
+arr.toString();
+// returns 'boop,boop,c,d,e'
+```
+
+Negative indices are allowed, as long as they resolve to a nonnegative index; e.g., `len - |idx| >= 0`. If not, the method throws a `RangeError`.
+
+``` javascript
+arr.mset( [-4], 'beep' );
+arr.toString();
+// returns 'boop,beep,c,d,e'
+```
+
+__Notes__:
+*	all `strings` must abide by `StringArray` length constraints. If a `string` does not conform, the method throws a `RangeError`.
+
+	``` javascript
+	arr.minLength = 1;
+	arr.maxLength = 1;
+
+	arr.mset( [0,1,2], ['a','b','woot'] );
+	// throws RangeError
+
+	arr.toString();
+	// returns 'boop,beep,c,d,e'
+	```
+
+*	setting multiple `StringArray` values is __atomic__. If setting one value fails (e.g., `TypeError`), all values fail to be set.
+
+	``` javascript
+	arr.mset( [0,1,2], function set( d, i ) {
+		if ( i === 2 ) {
+			return 5;
+		}
+	});
+	// throws TypeError
+	
+	arr.toString();
+	// returns 'boop,beep,c,d,e'
+	```
 
 
 
