@@ -9,6 +9,8 @@ Why not just use native `Arrays`? A `StringArray`
 *	prevents non-string primitives from being added to the `array`
 *	provides options to constrain `string` length
 *	allows __fancy indexing__
+	-	fancy [get](#get-methods)
+	-	fancy [set](#set-methods)
 
 ===
 1. [Install](#installation)
@@ -553,7 +555,71 @@ __Notes__:
 <a name="sset"></a>
 ##### StringArray.prototype.sset( idx, val )
 
-TODO
+Sets `StringArray` values according to a specified [`subsequence`](https://github.com/compute-io/indexspace). `val` may be either a single `string` primitive, a `string` primitive `array` of equal length, or a callback `function`. The callback is provided two arguments:
+*	__value__: value at a subsequence index.
+*	__idx__: subsequence index.
+
+
+The callback is __expected__ to return a `string` primitive; otherwise, the method throws a `TypeError`. The callback `this` context is, by default, set to the `StringArray` instance. To override the `this` context, use [`bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
+
+``` javascript
+var arr = new StringArray();
+
+arr.push( 'a', 'b', 'c' );
+
+arr.sset( ':2', 'beep' );
+arr.toString();
+// returns 'beep,beep,c'
+
+arr.sset( '0:end-1:1', function set( d, i ) {
+	console.log( this.toString() );
+	// returns 'beep,beep,c'
+	return d.replace( /e/g, 'o' );
+});
+arr.toString();
+// returns 'boop,boop,c'
+
+arr.sset( '3:', ['d','e'] );
+arr.toString();
+// returns 'boop,boop,c,d,e'
+
+arr.sset( '::2', ['wo','ot', '!!'] );
+arr.toString();
+// returns 'wo,boop,ot,d,!!'
+```
+
+For further subsequence documentation, see [compute-indexspace](https://github.com/compute-io/indexspace).
+
+
+
+__Notes__:
+*	all `strings` must abide by `StringArray` length constraints. If a `string` does not conform, the method throws a `RangeError`.
+
+	``` javascript
+	arr.minLength = 1;
+	arr.maxLength = 1;
+
+	arr.sset( ':3', ['a','b','woot'] );
+	// throws RangeError
+
+	arr.toString();
+	// returns 'wo,beep,ot,d,!!'
+	```
+
+*	setting multiple `StringArray` values is __atomic__. If setting one value fails (e.g., `TypeError`), all values fail to be set.
+
+	``` javascript
+	arr.sset( ':3, function set( d, i ) {
+		if ( i === 2 ) {
+			return 5;
+		}
+		return d;
+	});
+	// throws TypeError
+	
+	arr.toString();
+	// returns 'wo,beep,ot,d,!!'
+	```
 
 
 
@@ -1408,7 +1474,7 @@ arr.lset( [1,1,1], function set( d ) {
 	return '~' + d + '~';
 });
 arr.toString();
-// returns ~foo~,~eep~,~bar~,cc,bb'
+// returns '~foo~,~eep~,~bar~,cc,bb'
 ```
 
 To run the example code from the top-level application directory,

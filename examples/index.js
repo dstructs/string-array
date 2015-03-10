@@ -130,7 +130,7 @@ arr.lset( [1,1,1], function set( d ) {
 	return '~' + d + '~';
 });
 console.log( arr.toString() );
-// returns ~foo~,~eep~,~bar~,cc,bb'
+// returns '~foo~,~eep~,~bar~,cc,bb'
 
 
 
