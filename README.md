@@ -444,7 +444,7 @@ Sets a `StringArray` value located at a specified index. `val` may be either a `
 *	__idx__: specified index.
 
 
-The callback is __expected__ to return a `string` primitive; otherwise, the method throws a `TypeError`. The callback `this` context is, by default, set to the `StringArray` instance. To override the `this` context, use [`bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
+The callback is __expected__ to return a `string` primitive; otherwise, the method throws a `TypeError`. By default, the callback `this` context is set to the `StringArray` instance. To override the `this` context, use [`bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
 
 ``` javascript
 var arr = new StringArray();
@@ -488,7 +488,7 @@ Sets `StringArray` values located at a specified indices. `val` may be either a 
 *	__idx__: specified index.
 
 
-The callback is __expected__ to return a `string` primitive; otherwise, the method throws a `TypeError`. The callback `this` context is, by default, set to the `StringArray` instance. To override the `this` context, use [`bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
+The callback is __expected__ to return a `string` primitive; otherwise, the method throws a `TypeError`. By default, the callback `this` context is set to the `StringArray` instance. To override the `this` context, use [`bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
 
 ``` javascript
 var arr = new StringArray();
@@ -560,7 +560,7 @@ Sets `StringArray` values according to a specified [`subsequence`](https://githu
 *	__idx__: subsequence index.
 
 
-The callback is __expected__ to return a `string` primitive; otherwise, the method throws a `TypeError`. The callback `this` context is, by default, set to the `StringArray` instance. To override the `this` context, use [`bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
+The callback is __expected__ to return a `string` primitive; otherwise, the method throws a `TypeError`. By default, the callback `this` context is set to the `StringArray` instance. To override the `this` context, use [`bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
 
 ``` javascript
 var arr = new StringArray();
@@ -609,7 +609,7 @@ __Notes__:
 *	setting multiple `StringArray` values is __atomic__. If setting one value fails (e.g., `TypeError`), all values fail to be set.
 
 	``` javascript
-	arr.sset( ':3, function set( d, i ) {
+	arr.sset( ':3', function set( d, i ) {
 		if ( i === 2 ) {
 			return 5;
 		}
@@ -632,7 +632,7 @@ Sets `StringArray` elements whose values satisfy a regular expression. `val` may
 *	__idx__: value index.
 
 
-The callback is __expected__ to return a `string` primitive; otherwise, the method throws a `TypeError`. The callback `this` context is, by default, set to the `StringArray` instance. To override the `this` context, use [`bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
+The callback is __expected__ to return a `string` primitive; otherwise, the method throws a `TypeError`. By default, the callback `this` context is set to the `StringArray` instance. To override the `this` context, use [`bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
 
 ``` javascript
 var arr = new StringArray();
@@ -667,7 +667,7 @@ Sets `StringArray` values where an input `boolean array` is `true`. `val` may be
 *	__idx__: value index.
 
 
-The callback is __expected__ to return a `string` primitive; otherwise, the method throws a `TypeError`. The callback `this` context is, by default, set to the `StringArray` instance. To override the `this` context, use [`bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
+The callback is __expected__ to return a `string` primitive; otherwise, the method throws a `TypeError`. By default, the callback `this` context is set to the `StringArray` instance. To override the `this` context, use [`bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
 
 ``` javascript
 var arr = new StringArray();
@@ -746,7 +746,7 @@ Sets `StringArray` values where an input [`logical array`](https://github.com/va
 *	__idx__: value index.
 
 
-The callback is __expected__ to return a `string` primitive; otherwise, the method throws a `TypeError`. The callback `this` context is, by default, set to the `StringArray` instance. To override the `this` context, use [`bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
+The callback is __expected__ to return a `string` primitive; otherwise, the method throws a `TypeError`. By default, the callback `this` context is set to the `StringArray` instance. To override the `this` context, use [`bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
 
 ``` javascript
 var arr = new StringArray();
