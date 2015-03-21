@@ -101,6 +101,10 @@ val = arr.mget( [1,3] );
 console.log( val.toString() );
 // returns 'e,c'
 
+val = arr.sget( '::-1' );
+console.log( val.toString() );
+// returns 'b,c,d,e,f'
+
 val = arr.bget( [true,false,true,true,false] );
 console.log( val.toString() );
 // returns 'f,d,c'

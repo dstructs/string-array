@@ -34,6 +34,7 @@
     "url": "https://github.com/kgryte/string-array/issues"
   },
   "dependencies": {
+    "compute-indexspace": "^1.0.1",
     "compute-unique": "^1.0.1",
     "type-name": "^1.0.1",
     "validate.io-array": "^1.0.3",

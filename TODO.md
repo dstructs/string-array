@@ -2,6 +2,7 @@ TODO
 ====
 
 1. Revisit when `Proxy`/`Class` is widely supported. Ideal scenario would be support for `Array` subclassing.
+	-	__note__: `proxy` cannot be polyfilled due to limitations in ES5
 2. 
 
 
@@ -39,6 +40,7 @@ TODO
 	-	could create emitter-array
 9. numbytes
 	-	atop buffer (similar to tarrays)
+	-	string array then becomes a view
 10. del methods ???
 	-	could just force use of `splice`
 	-	but would allow fancy indexing
