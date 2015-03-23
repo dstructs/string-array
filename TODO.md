@@ -3,7 +3,13 @@ TODO
 
 1. Revisit when `Proxy`/`Class` is widely supported. Ideal scenario would be support for `Array` subclassing.
 	-	__note__: `proxy` cannot be polyfilled due to limitations in ES5
-2. 
+2. Holes should __not__ be allowed
+	-	fill with empty `strings`
+	-	any `set` fcn which is provided indices beyond the `array` length
+	-	check how `splice` works when start exceeds array length
+	-	tests to ensure always dense
+		-	set
+3.
 
 
 ### Methods
@@ -12,10 +18,10 @@ TODO
 	-	similar in concept to isArray. See validate.io module
 	-	in fact, could just use the validate.io module
 		-	will want the primitive string version
+		-	but is a primitive string array the same as a `StringArray`? Do we want the ability to validate both? a `soft` versus `strict` option?
 	-	do we want to include min and max options???
 2. get method
 	-	fancy indexing
-		-	sequence (sget)
 		-	general get which tries to deduce
 3. set method
 	-	fancy indexing

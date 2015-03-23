@@ -89,7 +89,7 @@ var StringArray = require( 'string-array' );
 <a name="string-array"></a>
 #### StringArray( [len, opts] )
 
-String array constructor. If provided a length `len`, initializes an empty `StringArray` of length `len`.
+String array constructor. If provided a length `len`, initializes a filled `StringArray` of length `len`, where the fill values are empty `strings`.
 
 ``` javascript
 var arr = new StringArray();
@@ -553,7 +553,7 @@ __Notes__:
 
 
 <a name="sset"></a>
-##### StringArray.prototype.sset( idx, val )
+##### StringArray.prototype.sset( str, val )
 
 Sets `StringArray` values according to a specified [`subsequence`](https://github.com/compute-io/indexspace). `val` may be either a single `string` primitive, a `string` primitive `array` of equal length, or a callback `function`. The callback is provided two arguments:
 *	__value__: value at a subsequence index.
@@ -660,7 +660,7 @@ __Note__: an input `string` must abide by `StringArray` length constraints. If a
 
 
 <a name="bset"></a>
-##### StringArray.prototype.bset( idx, val )
+##### StringArray.prototype.bset( arr, val )
 
 Sets `StringArray` values where an input `boolean array` is `true`. `val` may be either a single `string` primitive, a `string` primitive `array` of equal length, or a callback `function`. The callback is provided two arguments:
 *	__value__: value where input `array` is `true`.
@@ -739,7 +739,7 @@ __Notes__:
 
 
 <a name="lset"></a>
-##### StringArray.prototype.lset( idx, val )
+##### StringArray.prototype.lset( arr, val )
 
 Sets `StringArray` values where an input [`logical array`](https://github.com/validate-io/logical-array) is `1`. `val` may be either a single `string` primitive, a `string` primitive `array` of equal length, or a callback `function`. The callback is provided two arguments:
 *	__value__: value where input `array` is `1`.
@@ -1491,6 +1491,7 @@ $ node ./examples/index.js
 * 	`Object.keys()` will __not__ work as expected. A `StringArray` instance is an `object` which manages an internal `array`.
 * 	When applied to a `StringArray`, [`Array.isArray()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray)  will return `false`.
 * 	While an effort has been made to retain fidelity to the ECMAScript standard for `Arrays`, no guarantee is made that method implementations are spec compliant. This is particularly the case where the spec stipulates additional checks, etc; e.g., `Array#reverse`.
+*	A [sparse](http://www.2ality.com/2013/07/array-iteration-holes.html) `StringArray` is __not__ allowed. A `StringArray` is __always__ dense. When initializing a new `StringArray` of a specified length, the array is filled with empty `strings`. Additionally, when setting array indices greater than the existing length, any `holes` are filled with empty `strings`. Accordingly, `StringArray` methods, such as `filter`, `map`, `some`, `every`, etc, will __always__ iterate over the entire `StringArray`.
 *	`[]` notation does __not__ work as expected. A `StringArray` is an `object`. Using bracket notation will set and return values on the `StringArray` itself, __not__ on the internally managed `array` instance. You can set properties directly on the `StringArray` as you can with any `object`; just ensure that this is treated as distinct from the `StringArray` array data.
 *	Working with external methods expecting native `arrays` will require marshalling and unmarshalling of `StringArray` data to and from `arrays`.
 

@@ -231,6 +231,11 @@ describe( 'string-array', function tests() {
 		assert.strictEqual( arr.length, 10 );
 	});
 
+	it( 'should initialize a dense array', function test() {
+		var arr = new StringArray( 5 );
+		assert.deepEqual( arr.toArray(), ['','','','',''] );
+	});
+
 	it( 'should allowed min/max string lengths to be specified at instantation', function test() {
 		var arr = new StringArray({
 			'min': 5,
@@ -256,6 +261,25 @@ describe( 'string-array', function tests() {
 		var arr = new StringArray();
 		arr.length = 20;
 		assert.strictEqual( arr.length, 20 );
+	});
+
+	it( 'should fill any holes with empty strings when setting the string array length', function test() {
+		var arr, expected;
+
+		arr = new StringArray( 3 );
+		expected = ['','',''];
+
+		assert.deepEqual( arr.toArray(), expected, 'instantiate' );
+
+		arr.length = 5;
+		expected = ['','','','',''];
+
+		assert.deepEqual( arr.toArray(), expected, 'expand array' );
+
+		arr.length = 2;
+		expected = ['',''];
+
+		assert.deepEqual( arr.toArray(), expected, 'shrink array' );
 	});
 
 });
