@@ -113,6 +113,10 @@ val = arr.lget( [1,0,1,1,0] );
 console.log( val.toString() );
 // returns 'f,d,c'
 
+val = arr.reget( /[bdf]/ );
+console.log( val.toString() );
+// returns 'f,d,b'
+
 
 // SET //
 
@@ -135,6 +139,12 @@ arr.lset( [1,1,1], function set( d ) {
 });
 console.log( arr.toString() );
 // returns '~foo~,~eep~,~bar~,cc,bb'
+
+arr.reset( /^~.*~$/, function set( d ) {
+	return d.replace( /^~(.*)~$/, '$1' );
+});
+console.log( arr.toString() );
+// returns 'foo,eep,bar,cc,bb'
 
 
 

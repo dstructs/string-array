@@ -30,7 +30,6 @@ TODO
 		-	sequence (sset)
 		-	general set which tries to deduce
 4. add get, set examples
-	-	reset, reget
 	-	sget, sset
 5. fixedLength/extensible/fixed property
 	-	array length can never be changed
