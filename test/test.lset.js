@@ -118,6 +118,26 @@ describe( 'StringArray#lset', function tests() {
 		assert.strictEqual( arr.toString(), 'a,weep,c,weep' );
 	});
 
+	it( 'should fill with empty strings if an index corresponding to a truthy value exceeds the array length', function test() {
+		var expected;
+
+		arr.push( 'a', 'b', 'c' );
+
+		arr.lset( [0,0,0,0,1], 'woot' );
+		expected = [ 'a', 'b', 'c', '', 'woot' ];
+		assert.deepEqual( arr.toArray(), expected );
+
+		arr.lset( [0,0,0,0,0,0,1,0,1], ['z', 'x', 'y', 'w', 'v', 'u', 'd', 't', 'e'] );
+		expected.push( '', 'd', '', 'e' );
+		assert.deepEqual( arr.toArray(), expected );
+
+		arr.lset( [0,0,0,0,0,0,0,0,0,0,1,0,1], function set() {
+			return 'f';
+		});
+		expected.push( '', 'f', '', 'f' );
+		assert.deepEqual( arr.toArray(), expected );
+	});
+
 	it( 'should do nothing if no input array values are `1`', function test() {
 		arr.push( 'a', 'b', 'c' );
 

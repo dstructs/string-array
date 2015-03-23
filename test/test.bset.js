@@ -118,6 +118,26 @@ describe( 'StringArray#bset', function tests() {
 		assert.strictEqual( arr.toString(), 'a,weep,c,weep' );
 	});
 
+	it( 'should fill with empty strings if an index corresponding to a true value exceeds the array length', function test() {
+		var expected;
+
+		arr.push( 'a', 'b', 'c' );
+
+		arr.bset( [false,false,false,false,true], 'woot' );
+		expected = [ 'a', 'b', 'c', '', 'woot' ];
+		assert.deepEqual( arr.toArray(), expected );
+
+		arr.bset( [false,false,false,false,false,false,true,false,true], ['z', 'x', 'y', 'w', 'v', 'u', 'd', 't', 'e'] );
+		expected.push( '', 'd', '', 'e' );
+		assert.deepEqual( arr.toArray(), expected );
+
+		arr.bset( [false,false,false,false,false,false,false,false,false,false,true,false,true], function set() {
+			return 'f';
+		});
+		expected.push( '', 'f', '', 'f' );
+		assert.deepEqual( arr.toArray(), expected );
+	});
+
 	it( 'should do nothing if no input array values are true', function test() {
 		arr.push( 'a', 'b', 'c' );
 

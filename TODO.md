@@ -7,8 +7,6 @@ TODO
 	-	fill with empty `strings`
 	-	any `set` fcn which is provided indices beyond the `array` length
 		-	set
-		-	bset
-		-	lset
 		-	sset
 	-	tests to ensure always dense
 3.
