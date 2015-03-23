@@ -20,6 +20,7 @@ TODO
 		-	will want the primitive string version
 		-	but is a primitive string array the same as a `StringArray`? Do we want the ability to validate both? a `soft` versus `strict` option?
 	-	do we want to include min and max options???
+		-	is a string array satisfying the following conditions...
 2. get method
 	-	fancy indexing
 		-	general get which tries to deduce
@@ -51,5 +52,12 @@ TODO
 10. del methods ???
 	-	could just force use of `splice`
 	-	but would allow fancy indexing
+		-	idel
+		-	mdel
+		-	redel
+		-	bdel
+		-	ldel
+		-	sdel
+		-	=> copy to new internal `array`
 11. 
 
