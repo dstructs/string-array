@@ -125,6 +125,26 @@ describe( 'StringArray#mset', function tests() {
 		assert.strictEqual( arr.mget( [-1,-3] ).toString(), 'weep,weep' );
 	});
 
+	it( 'should fill with empty strings if an index exceeds the array length', function test() {
+		var expected;
+
+		arr.push( 'a', 'b', 'c' );
+
+		arr.mset( [4], 'woot' );
+		expected = [ 'a', 'b', 'c', '', 'woot' ];
+		assert.deepEqual( arr.toArray(), expected );
+
+		arr.mset( [6,8], ['d','e'] );
+		expected.push( '', 'd', '', 'e' );
+		assert.deepEqual( arr.toArray(), expected );
+
+		arr.mset( [12,10], function set() {
+			return 'f';
+		});
+		expected.push( '', 'f', '', 'f' );
+		assert.deepEqual( arr.toArray(), expected );
+	});
+
 	it( 'should throw an error if provided a string which does not conform to length constraints', function test() {
 		arr.push( 'a', 'b', 'c' );
 		arr.minLength = 1;

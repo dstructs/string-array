@@ -7,8 +7,6 @@ TODO
 	-	fill with empty `strings`
 	-	any `set` fcn which is provided indices beyond the `array` length
 		-	set
-		-	iset
-		-	mset
 		-	bset
 		-	lset
 		-	sset
@@ -32,6 +30,8 @@ TODO
 		-	sequence (sset)
 		-	general set which tries to deduce
 4. add get, set examples
+	-	reset, reget
+	-	sget, sset
 5. fixedLength/extensible/fixed property
 	-	array length can never be changed
 		-	no push, pop, shift, unshift, splice (unless 1:1 replace)
