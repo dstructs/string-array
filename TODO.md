@@ -6,9 +6,13 @@ TODO
 2. Holes should __not__ be allowed
 	-	fill with empty `strings`
 	-	any `set` fcn which is provided indices beyond the `array` length
-	-	check how `splice` works when start exceeds array length
-	-	tests to ensure always dense
 		-	set
+		-	iset
+		-	mset
+		-	bset
+		-	lset
+		-	sset
+	-	tests to ensure always dense
 3.
 
 

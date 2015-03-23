@@ -114,6 +114,33 @@ describe( 'StringArray#iset', function tests() {
 		assert.strictEqual( arr.iget( -1 ), 'weep' );
 	});
 
+	it( 'should fill with empty strings when an index exceeds the array length', function test() {
+		arr.push( 'a', 'beep', 'c', 'boop' );
+
+		assert.deepEqual( arr.toArray(), [
+			'a',
+			'beep',
+			'c',
+			'boop'
+		]);
+
+		arr.iset( 9, 'woot' );
+		assert.strictEqual( arr.iget( 9 ), 'woot' );
+
+		assert.deepEqual( arr.toArray(), [
+			'a',
+			'beep',
+			'c',
+			'boop',
+			'',
+			'',
+			'',
+			'',
+			'',
+			'woot'
+		]);
+	});
+
 	it( 'should throw an error if provided a string which does not conform to length constraints', function test() {
 		arr.push( 'a', 'b', 'c' );
 		arr.minLength = 1;
