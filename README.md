@@ -1453,6 +1453,10 @@ val = arr.lget( [1,0,1,1,0] );
 val.toString();
 // returns 'f,d,c'
 
+val = arr.reget( /[bdf]/ );
+val.toString();
+// returns 'f,d,b'
+
 
 // SET //
 
@@ -1475,6 +1479,12 @@ arr.lset( [1,1,1], function set( d ) {
 });
 arr.toString();
 // returns '~foo~,~eep~,~bar~,cc,bb'
+
+arr.reset( /^~.*~$/, function set( d ) {
+	return d.replace( /^~(.*)~$/, '$1' );
+});
+arr.toString();
+// returns 'foo,eep,bar,cc,bb'
 ```
 
 To run the example code from the top-level application directory,
