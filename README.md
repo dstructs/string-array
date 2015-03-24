@@ -559,7 +559,7 @@ __Notes__:
 	// throws RangeError
 
 	arr.toString();
-	// returns 'boop,beep,c,d,e'
+	// returns 'boop,boop,c,d,e'
 	```
 
 *	setting multiple `StringArray` values is __atomic__. If setting one value fails (e.g., `TypeError`), all values fail to be set.
@@ -574,7 +574,7 @@ __Notes__:
 	// throws TypeError
 	
 	arr.toString();
-	// returns 'boop,beep,c,d,e'
+	// returns 'boop,boop,c,d,e'
 	```
 
 
@@ -645,7 +645,7 @@ __Notes__:
 	// throws RangeError
 
 	arr.toString();
-	// returns 'wo,beep,ot,d,!!'
+	// returns 'we,beep,et,d,!!'
 	```
 
 *	setting multiple `StringArray` values is __atomic__. If setting one value fails (e.g., `TypeError`), all values fail to be set.
@@ -660,7 +660,7 @@ __Notes__:
 	// throws TypeError
 	
 	arr.toString();
-	// returns 'wo,beep,ot,d,!!'
+	// returns 'we,beep,et,d,!!'
 	```
 
 
@@ -847,7 +847,7 @@ By default, the callback `this` context is set to the `StringArray` instance. To
 function set( d, i ) {
 	console.log( this );
 	// returns {}
-	return d.replace( /e/g, 'o' );
+	return 'boop';
 }
 
 arr.lset( [1,0,1], set, {} );
