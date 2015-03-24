@@ -9,7 +9,14 @@ TODO
 		-	set
 		-	sset
 	-	tests to ensure always dense
-3. 
+3. lazy indexspace => iterindexspace
+	-	parse
+	-	if no explicit end/stop, then set to infinity
+	-	return iterator
+	-	with each call to next, return next iteration value
+4. perf optimization => in `set` methods, allow `thisArg` to be provided to avoid forcing users to use `.bind()`, which is a perf bottleneck
+	-	only applicable when provided a callback
+5. 
 
 
 ### Methods

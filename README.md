@@ -437,14 +437,14 @@ TBD.
 
 
 <a name="iset"></a>
-##### StringArray.prototype.iset( idx, val )
+##### StringArray.prototype.iset( idx, val[, thisArg] )
 
 Sets a `StringArray` value located at a specified index. `val` may be either a `string` primitive or a callback `function`. The callback is provided two arguments:
 *	__value__: value at the specified index.
 *	__idx__: specified index.
 
 
-The callback is __expected__ to return a `string` primitive; otherwise, the method throws a `TypeError`. By default, the callback `this` context is set to the `StringArray` instance. To override the `this` context, use [`bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
+The callback is __expected__ to return a `string` primitive; otherwise, the method throws a `TypeError`.
 
 ``` javascript
 var arr = new StringArray();
@@ -476,19 +476,33 @@ arr.toString();
 // returns 'a,beep,c,,e'
 ```
 
+By default, the callback `this` context is set to the `StringArray` instance. To specify a different `this` context, provide a `thisArg`.
+
+``` javascript
+function set( d, i ) {
+	console.log( this );
+	// returns {}
+	return d.replace( /e/g, 'o' );
+}
+
+arr.iset( 1, set, {} );
+arr.toString();
+// returns 'a,boop,c,,e'
+```
+
 __Note__: an input `string` must abide by `StringArray` length constraints. If an input `string` does not conform, the method throws a `RangeError`.
 
 
 
 <a name="mset"></a>
-##### StringArray.prototype.mset( idx, val )
+##### StringArray.prototype.mset( idx, val[, thisArg] )
 
 Sets `StringArray` values located at a specified indices. `val` may be either a single `string` primitive, a `string` primitive `array` of equal length, or a callback `function`. The callback is provided two arguments:
 *	__value__: value at the specified index.
 *	__idx__: specified index.
 
 
-The callback is __expected__ to return a `string` primitive; otherwise, the method throws a `TypeError`. By default, the callback `this` context is set to the `StringArray` instance. To override the `this` context, use [`bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
+The callback is __expected__ to return a `string` primitive; otherwise, the method throws a `TypeError`.
 
 ``` javascript
 var arr = new StringArray();
@@ -519,6 +533,20 @@ arr.mset( [-4], 'beep' );
 arr.toString();
 // returns 'boop,beep,c,d,e'
 ```
+
+ By default, the callback `this` context is set to the `StringArray` instance. To specify a different `this` context, provide a `thisArg`.
+
+ ``` javascript
+ function set( d, i ) {
+	console.log( this );
+	// returns {}
+	return d.replace( /e/g, 'o' );
+}
+
+arr.mset( [0,1], set, {} );
+arr.toString();
+// returns 'boop,boop,c,d,e'
+ ```
 
 __Notes__:
 *	all `strings` must abide by `StringArray` length constraints. If a `string` does not conform, the method throws a `RangeError`.
@@ -553,14 +581,14 @@ __Notes__:
 
 
 <a name="sset"></a>
-##### StringArray.prototype.sset( str, val )
+##### StringArray.prototype.sset( str, val[, thisArg] )
 
 Sets `StringArray` values according to a specified [`subsequence`](https://github.com/compute-io/indexspace). `val` may be either a single `string` primitive, a `string` primitive `array` of equal length, or a callback `function`. The callback is provided two arguments:
 *	__value__: value at a subsequence index.
 *	__idx__: subsequence index.
 
 
-The callback is __expected__ to return a `string` primitive; otherwise, the method throws a `TypeError`. By default, the callback `this` context is set to the `StringArray` instance. To override the `this` context, use [`bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
+The callback is __expected__ to return a `string` primitive; otherwise, the method throws a `TypeError`.
 
 ``` javascript
 var arr = new StringArray();
@@ -586,6 +614,20 @@ arr.toString();
 arr.sset( '::2', ['wo','ot', '!!'] );
 arr.toString();
 // returns 'wo,boop,ot,d,!!'
+```
+
+By default, the callback `this` context is set to the `StringArray` instance. To specify a different `this` context, provide a `thisArg`.
+
+``` javascript
+function set( d, i ) {
+	console.log( this );
+	// returns {}
+	return d.replace( /o/g, 'e' );
+}
+
+arr.sset( '0:end-1:1', set, {} );
+arr.toString();
+// returns 'we,beep,et,d,!!'
 ```
 
 For further subsequence documentation, see [compute-indexspace](https://github.com/compute-io/indexspace).
@@ -625,14 +667,14 @@ __Notes__:
 
 
 <a name="reset"></a>
-##### StringArray.prototype.reset( re, val )
+##### StringArray.prototype.reset( re, val[, thisArg] )
 
 Sets `StringArray` elements whose values satisfy a regular expression. `val` may be either a `string` primitive or a callback `function`. The callback is provided two arguments:
 *	__value__: value satisfying regular expression.
 *	__idx__: value index.
 
 
-The callback is __expected__ to return a `string` primitive; otherwise, the method throws a `TypeError`. By default, the callback `this` context is set to the `StringArray` instance. To override the `this` context, use [`bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
+The callback is __expected__ to return a `string` primitive; otherwise, the method throws a `TypeError`.
 
 ``` javascript
 var arr = new StringArray();
@@ -652,6 +694,21 @@ arr.toString();
 // returns 'a,weep,weep,c'
 ```
 
+By default, the callback `this` context is set to the `StringArray` instance. To specify a different `this` context, provide a `thisArg`.
+
+``` javascript
+function set( d, i ) {
+	console.log( this );
+	// returns {}
+	return d.replace( /e{2}p$/, 'oot' );
+}
+
+arr.reset( /^w.*/, set, {} );
+arr.toString();
+// returns 'a,woot,woot,c'
+```
+
+
 __Note__: an input `string` must abide by `StringArray` length constraints. If an input `string` does not conform, the method throws a `RangeError`.
 
 
@@ -660,14 +717,14 @@ __Note__: an input `string` must abide by `StringArray` length constraints. If a
 
 
 <a name="bset"></a>
-##### StringArray.prototype.bset( arr, val )
+##### StringArray.prototype.bset( arr, val[, thisArg] )
 
 Sets `StringArray` values where an input `boolean array` is `true`. `val` may be either a single `string` primitive, a `string` primitive `array` of equal length, or a callback `function`. The callback is provided two arguments:
 *	__value__: value where input `array` is `true`.
 *	__idx__: value index.
 
 
-The callback is __expected__ to return a `string` primitive; otherwise, the method throws a `TypeError`. By default, the callback `this` context is set to the `StringArray` instance. To override the `this` context, use [`bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
+The callback is __expected__ to return a `string` primitive; otherwise, the method throws a `TypeError`. 
 
 ``` javascript
 var arr = new StringArray();
@@ -691,12 +748,26 @@ arr.toString();
 // returns 'd,b,f'
 ```
 
+By default, the callback `this` context is set to the `StringArray` instance. To specify a different `this` context, provide a `thisArg`.
+
+``` javascript
+function set( d, i ) {
+	console.log( this );
+	// returns {}
+	return 'a';
+}
+
+arr.bset( [true,false,false], set, {} );
+arr.toString();
+// returns 'a,b,f'
+```
+
 The input `boolean array` is __not__ required to have the same length as the `StringArray`. If the `boolean array` is shorter than the `StringArray`, only the first `N` elements are considered, where `N` is the input `array` length. If the input `array` length is greater than the `StringArray` length, each `array` element equal to `true` extends the `StringArray`.
 
 ``` javascript
 arr.bset( [false,false,false,false,true,false,true], 'woot' );
 arr.toString();
-// returns 'd,b,f,,woot,,woot'
+// returns 'a,b,f,,woot,,woot'
 
 arr.bset( [true,true], ['beep','boop'] );
 arr.toString();
@@ -739,14 +810,14 @@ __Notes__:
 
 
 <a name="lset"></a>
-##### StringArray.prototype.lset( arr, val )
+##### StringArray.prototype.lset( arr, val[, thisArg] )
 
 Sets `StringArray` values where an input [`logical array`](https://github.com/validate-io/logical-array) is `1`. `val` may be either a single `string` primitive, a `string` primitive `array` of equal length, or a callback `function`. The callback is provided two arguments:
 *	__value__: value where input `array` is `1`.
 *	__idx__: value index.
 
 
-The callback is __expected__ to return a `string` primitive; otherwise, the method throws a `TypeError`. By default, the callback `this` context is set to the `StringArray` instance. To override the `this` context, use [`bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
+The callback is __expected__ to return a `string` primitive; otherwise, the method throws a `TypeError`.
 
 ``` javascript
 var arr = new StringArray();
@@ -770,16 +841,30 @@ arr.toString();
 // returns 'd,b,f'
 ```
 
+By default, the callback `this` context is set to the `StringArray` instance. To specify a different `this` context, provide a `thisArg`.
+
+``` javascript
+function set( d, i ) {
+	console.log( this );
+	// returns {}
+	return d.replace( /e/g, 'o' );
+}
+
+arr.lset( [1,0,1], set, {} );
+arr.toString();
+// returns 'boop,b,boop'
+```
+
 The input `logical array` is __not__ required to have the same length as the `StringArray`. If the `logical array` is shorter than the `StringArray`, only the first `N` elements are considered, where `N` is the input `array` length. If the input `array` length is greater than the `StringArray` length, each `array` element equal to `1` extends the `StringArray`.
 
 ``` javascript
 arr.lset( [0,0,0,0,1,0,1], 'woot' );
 arr.toString();
-// returns 'd,b,f,,woot,,woot'
+// returns 'boop,b,boop,,woot,,woot'
 
-arr.lset( [1,1], ['beep','boop'] );
+arr.lset( [1,1], ['beep','bop'] );
 arr.toString();
-// returns 'beep,boop,f,,woot,,woot'
+// returns 'beep,bop,boop,,woot,,woot'
 ```
 
 
