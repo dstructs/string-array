@@ -125,6 +125,20 @@ describe( 'StringArray#mset', function tests() {
 		assert.strictEqual( arr.mget( [-1,-3] ).toString(), 'weep,weep' );
 	});
 
+	it( 'should use a provided `this` context', function test() {
+		var self = { 'x': 4 };
+
+		arr.push( 'a', 'b', 'c' );
+		arr.mset( [0,1], set, self );
+
+		function set() {
+			/* jshint validthis:true */
+			assert.notOk( this === arr );
+			assert.strictEqual( this, self );
+			return 'woot';
+		}
+	});
+
 	it( 'should fill with empty strings if an index exceeds the array length', function test() {
 		var expected;
 

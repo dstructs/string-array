@@ -114,6 +114,20 @@ describe( 'StringArray#iset', function tests() {
 		assert.strictEqual( arr.iget( -1 ), 'weep' );
 	});
 
+	it( 'should use a provided `this` context', function test() {
+		var self = { 'x': 4 };
+
+		arr.push( 'a', 'b', 'c' );
+		arr.iset( 1, set, self );
+
+		function set() {
+			/* jshint validthis:true */
+			assert.notOk( this === arr );
+			assert.strictEqual( this, self );
+			return 'woot';
+		}
+	});
+
 	it( 'should fill with empty strings when an index exceeds the array length', function test() {
 		arr.push( 'a', 'beep', 'c', 'boop' );
 

@@ -104,6 +104,20 @@ describe( 'StringArray#reset', function tests() {
 		assert.strictEqual( arr.toString(), 'a,weep,c,weep' );
 	});
 
+	it( 'should use a provided `this` context', function test() {
+		var self = { 'x': 4 };
+
+		arr.push( 'a', 'b', 'c' );
+		arr.reset( /[bc]/, set, self );
+
+		function set() {
+			/* jshint validthis:true */
+			assert.notOk( this === arr );
+			assert.strictEqual( this, self );
+			return 'woot';
+		}
+	});
+
 	it( 'should do nothing if no value satisfies the regular expression', function test() {
 		arr.push( 'a', 'beep', 'c', 'boop' );
 
