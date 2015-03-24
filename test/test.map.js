@@ -77,8 +77,12 @@ describe( 'StringArray#map', function tests() {
 	it( 'should throw an error if a map function returns value which is not a string primitive', function test() {
 		arr.push( 'a', 'b', 'c' );
 		expect( foo ).to.throw( TypeError );
+		expect( bar ).to.throw( TypeError );
 		function foo() {
 			arr.map( map );
+		}
+		function bar() {
+			arr.map( map, {} );
 		}
 		function map() {
 			return 5;

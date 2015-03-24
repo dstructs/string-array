@@ -70,7 +70,7 @@ describe( 'StringArray#every', function tests() {
 		assert.notOk( bool );
 	});
 
-	it( 'should accept a `this` context', function test() {
+	it( 'should positively validate and accept a `this` context', function test() {
 		arr.push( 'a', 'b', 'c' );
 
 		var bool = arr.every( every, arr );
@@ -80,6 +80,19 @@ describe( 'StringArray#every', function tests() {
 			/* jshint validthis:true */
 			assert.ok( this instanceof StringArray );
 			return ( val.length > 0 );
+		}
+	});
+
+	it( 'should negatively validate and accept a `this` context', function test() {
+		arr.push( 'a', 'b', 'c' );
+
+		var bool = arr.every( every, arr );
+		assert.notOk( bool );
+
+		function every( val ) {
+			/* jshint validthis:true */
+			assert.ok( this instanceof StringArray );
+			return ( val.length < 'b' );
 		}
 	});
 

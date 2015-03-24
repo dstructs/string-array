@@ -9,7 +9,7 @@ TODO
 		-	set
 		-	sset
 	-	tests to ensure always dense
-3.
+3. 
 
 
 ### Methods
