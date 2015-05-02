@@ -534,10 +534,10 @@ arr.toString();
 // returns 'boop,beep,c,d,e'
 ```
 
- By default, the callback `this` context is set to the `StringArray` instance. To specify a different `this` context, provide a `thisArg`.
+By default, the callback `this` context is set to the `StringArray` instance. To specify a different `this` context, provide a `thisArg`.
 
- ``` javascript
- function set( d, i ) {
+``` javascript
+function set( d, i ) {
 	console.log( this );
 	// returns {}
 	return d.replace( /e/g, 'o' );

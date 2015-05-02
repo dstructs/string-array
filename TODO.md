@@ -11,11 +11,16 @@ TODO
 	-	tests to ensure always dense
 3. lazy indexspace => iterindexspace
 	-	parse
+		-	subsequence string
 	-	if no explicit end/stop, then set to infinity
 	-	return iterator
 	-	with each call to next, return next iteration value
-4. perf optimization => in `set` methods, allow `thisArg` to be provided to avoid forcing users to use `.bind()`, which is a perf bottleneck
-	-	only applicable when provided a callback
+	-	negative values not allowed, as would be unable to deduce from subsequence string alone
+		-	could demo the string substitution necessary before providing to fcn
+	-	if no explicit start, assume 0
+	-	have to handle similar situation to `3:-1:0`
+	-	or what does `3:-1:` eval to? assume last implicit number is `0`?
+4. 
 5. 
 
 
